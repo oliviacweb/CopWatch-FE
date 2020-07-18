@@ -7,7 +7,7 @@ describe('Home', () => {
     it('Should display CopWatch', async () => {
         const { getByText } = render(<Home />)
 
-        const title = await waitFor(() => getByText("Home Screen"))
+        const title = await waitFor(() => getByText("CopWatch"))
 
         expect(title).toBeTruthy()
     })   
