@@ -62,14 +62,14 @@ export default function Report() {
             />
             <Text>Officer Name:</Text>
             <TextInput 
-                placeholder="Enter Officer(s) Name" 
+                placeholder="Enter Officer Name(s)" 
                 onChangeText={updateOfficerName} 
                 style = {styles.input}
 
             />
             <Text>Officer Badge Number:</Text>
             <TextInput 
-                placeholder="Enter Officer Badge Number" 
+                placeholder="Enter Officer Badge Number(s)" 
                 onChangeText={updateBadgeNum} 
                 style = {styles.input}
 
