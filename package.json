@@ -5,7 +5,11 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "react-native"
   },
   "dependencies": {
     "expo": "~38.0.8",
@@ -13,11 +17,16 @@
     "react": "~16.11.0",
     "react-dom": "~16.11.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
+    "react-native-testing-library": "^2.1.1",
     "react-native-web": "~0.11.7"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
-    "babel-preset-expo": "~8.1.0"
+    "@testing-library/react": "^10.4.7",
+    "@testing-library/react-native": "^5.0.3",
+    "babel-preset-expo": "~8.1.0",
+    "jest": "^26.1.0",
+    "react-test-renderer": "^16.13.1"
   },
   "private": true
 }
