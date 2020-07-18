@@ -6,14 +6,10 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-<<<<<<< HEAD
     "test": "jest"
   },
   "jest": {
     "preset": "react-native"
-=======
-    "build": "expo build"
->>>>>>> master
   },
   "dependencies": {
     "expo": "~38.0.8",
@@ -21,13 +17,9 @@
     "react": "~16.11.0",
     "react-dom": "~16.11.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
-<<<<<<< HEAD
     "react-native-testing-library": "^2.1.1",
-    "react-native-web": "~0.11.7"
-=======
     "react-native-web": "~0.11.7",
     "expo-camera": "~8.3.1"
->>>>>>> master
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
