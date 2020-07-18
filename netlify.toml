@@ -1,4 +1,0 @@
-[build]
-base = "copwatch/"
-publish = "copwatch/build/"
-command = "npm run build"
