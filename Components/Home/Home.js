@@ -11,13 +11,16 @@ export default function Home({ navigation }) {
     const handleReportView = () => {
         navigation.navigate("Report Form")
     }
+
     return (
         <View>
             <Header />
-            <Button 
-                title="File a Report"
-                onPress={() => handleReportView()}
-            />
+            <View style={styles.reportBtn}>
+                <Button 
+                    title="File a Report"
+                    onPress={() => handleReportView()}
+                />
+            </View>
               
          
             {/* <Text>Home Screen</Text> */}
@@ -26,3 +29,12 @@ export default function Home({ navigation }) {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    reportBtn: {
+        // width: '50%',
+        fontSize: 1000,
+        backgroundColor: 'red',
+    
+    }
+})
