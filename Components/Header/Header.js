@@ -1,13 +1,13 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { ScrollView, Text, StyleSheet } from 'react-native'
 import { preventAutoHide } from 'expo/build/launch/SplashScreen'
 
 export default function IncidentCard() {
 
     return(
-        <View>
+        <ScrollView>
             <Text style={styles.header}>CopWatch</Text>
-        </View>
+        </ScrollView>
     )
     
 }
@@ -16,5 +16,9 @@ const styles = StyleSheet.create({
     header: {
         fontSize: 50,
         textAlign: 'center',
+        borderBottomWidth: 3,
+        borderBottomColor: 'black'
+        // backgroundColor: 'red',
+        // color: 'blue'
     }
 })

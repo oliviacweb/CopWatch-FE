@@ -8,12 +8,16 @@ import { NavigationContainer } from '@react-navigation/native';
 
 export default function Home({ navigation }) {
 
+    // routing
     const handleReportView = () => {
         navigation.navigate("Report Form")
     }
 
+    // get location on page load
+    
+
     return (
-        <View>
+        <View style={styles.home}>
             <Header />
             <View style={styles.reportBtn}>
                 <Button 
@@ -32,9 +36,11 @@ export default function Home({ navigation }) {
 
 const styles = StyleSheet.create({
     reportBtn: {
-        // width: '50%',
-        fontSize: 1000,
-        backgroundColor: 'red',
-    
+        marginBottom: 250,
+        // height: 100
+    },
+
+    home: {
+        height: '100%'
     }
 })

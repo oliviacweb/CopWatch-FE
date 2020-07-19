@@ -36,6 +36,7 @@ export default function Report() {
             <Text style={styles.label}>Involved Parties:</Text>
             <TextInput 
                 placeholder="Enter Involved Parties" 
+                value={parties}
                 onChangeText={updateParties} 
                 style = {styles.input}
 
@@ -43,6 +44,7 @@ export default function Report() {
             <Text style={styles.label}>Date:</Text>
             <TextInput 
                 placeholder="Enter Date" 
+                value={date}
                 onChangeText={updateDate} 
                 style = {styles.input}
 
@@ -50,6 +52,7 @@ export default function Report() {
             <Text style={styles.label}>Time:</Text>
             <TextInput 
                 placeholder="Enter Time" 
+                value={time}
                 onChangeText={updateTime} 
                 style = {styles.input}
 
@@ -57,6 +60,7 @@ export default function Report() {
             <Text style={styles.label}>Location:</Text>
             <TextInput 
                 placeholder="Enter Location" 
+                value={location}
                 onChangeText={updateLocation} 
                 style = {styles.input}
 
@@ -64,6 +68,7 @@ export default function Report() {
             <Text style={styles.label}>Officer Name:</Text>
             <TextInput 
                 placeholder="Enter Officer Name(s)" 
+                valuie={officerName}
                 onChangeText={updateOfficerName} 
                 style = {styles.input}
 
@@ -71,6 +76,7 @@ export default function Report() {
             <Text style={styles.label}>Officer Badge Number:</Text>
             <TextInput 
                 placeholder="Enter Officer Badge Number(s)" 
+                value={badgeNum}
                 onChangeText={updateBadgeNum} 
                 style = {styles.input}
 
@@ -79,6 +85,7 @@ export default function Report() {
             <Text style={styles.label}>Description:</Text>
             <TextInput 
                 placeholder="Enter A Description Of What Happened" 
+                value={description}
                 onChangeText={updateDescription}
                 style = {styles.largeInput}
             />
