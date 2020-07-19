@@ -33,6 +33,7 @@
     "@testing-library/react-native": "^5.0.3",
     "babel-preset-expo": "~8.1.0",
     "jest": "^26.1.0",
+    "react-native-gesture-handler": "^1.6.1",
     "react-test-renderer": "^16.13.1"
   },
   "private": true
