@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
 
 import Header from '../Header/Header'
@@ -7,14 +7,15 @@ import ReportForm from '../ReportForm/ReportForm'
 import { NavigationContainer } from '@react-navigation/native';
 
 export default function Home({ navigation }) {
-
+    const [ location, updateLocation ] = useState('')
+    
     // routing
     const handleReportView = () => {
         navigation.navigate("Report Form")
     }
 
     // get location on page load
-    
+
 
     return (
         <View style={styles.home}>
