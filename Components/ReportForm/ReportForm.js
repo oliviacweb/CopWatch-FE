@@ -32,42 +32,43 @@ export default function Report() {
 
     return (
         <View>
-            <Text>Involved Parties:</Text>
+            <Text style={styles.title}>File a New Report</Text>
+            <Text style={styles.label}>Involved Parties:</Text>
             <TextInput 
                 placeholder="Enter Involved Parties" 
                 onChangeText={updateParties} 
                 style = {styles.input}
 
             />
-            <Text>Date:</Text>
+            <Text style={styles.label}>Date:</Text>
             <TextInput 
                 placeholder="Enter Date" 
                 onChangeText={updateDate} 
                 style = {styles.input}
 
             />
-            <Text>Time:</Text>
+            <Text style={styles.label}>Time:</Text>
             <TextInput 
                 placeholder="Enter Time" 
                 onChangeText={updateTime} 
                 style = {styles.input}
 
             />
-            <Text>Location:</Text>
+            <Text style={styles.label}>Location:</Text>
             <TextInput 
                 placeholder="Enter Location" 
                 onChangeText={updateLocation} 
                 style = {styles.input}
 
             />
-            <Text>Officer Name:</Text>
+            <Text style={styles.label}>Officer Name:</Text>
             <TextInput 
                 placeholder="Enter Officer Name(s)" 
                 onChangeText={updateOfficerName} 
                 style = {styles.input}
 
             />
-            <Text>Officer Badge Number:</Text>
+            <Text style={styles.label}>Officer Badge Number:</Text>
             <TextInput 
                 placeholder="Enter Officer Badge Number(s)" 
                 onChangeText={updateBadgeNum} 
@@ -75,11 +76,11 @@ export default function Report() {
 
             />
             
-            <Text>Description:</Text>
+            <Text style={styles.label}>Description:</Text>
             <TextInput 
                 placeholder="Enter A Description Of What Happened" 
                 onChangeText={updateDescription}
-                style = {styles.input}
+                style = {styles.largeInput}
             />
             <Button 
                 title="Submit Report"
@@ -90,8 +91,27 @@ export default function Report() {
 }
 
 const styles = StyleSheet.create({
+    title: {
+        fontSize: 25,
+        margin: 10,
+        textAlign: 'center'
+    },
+
+    label: {
+        fontSize: 15,
+        marginLeft: 5    
+    },
+
     input: {
         margin: 10,
         fontSize: 15,
+        backgroundColor: '#fff',
+    },
+
+    largeInput: {
+        margin: 10,
+        fontSize: 15,
+        backgroundColor: '#fff',
+        height: 100
     }
 })
