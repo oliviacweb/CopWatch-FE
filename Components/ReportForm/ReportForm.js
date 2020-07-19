@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import { View, TextInput, Text, StyleSheet, Button } from 'react-native'
 
-export default function Report() {
+export default function Report(props) {
+    const { address } = props.route.params
+    
     const [ parties, updateParties ] = useState('')
     // option to automatically get?
     const [ date, updateDate ] = useState('')
     // option to automatically get? 
     const [ time, updateTime ] = useState('')
     // option to automatically get? 
-    const [ location, updateLocation ] = useState('')
+    const [ location, updateLocation ] = useState(address)
     const [ officerName, updateOfficerName ] = useState('')
     const [ badgeNum, updateBadgeNum ] = useState('')
     const [ description, updateDescription ] = useState('')
@@ -59,7 +61,7 @@ export default function Report() {
             />
             <Text style={styles.label}>Location:</Text>
             <TextInput 
-                placeholder="Enter Location" 
+                placeholder={address} 
                 value={location}
                 onChangeText={updateLocation} 
                 style = {styles.input}
