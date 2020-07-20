@@ -7,8 +7,8 @@ import ReportForm from '../ReportForm/ReportForm'
 import { NavigationContainer } from '@react-navigation/native';
 
 export default function Home({ navigation }) {
-    const [ address, updateAddress ] = useState('')
-    const [ coordinates, updateCoordinates ] = useState({location: {}})
+    const [ address, updateAddress ] = useState(' ')
+    const [ coordinates, updateCoordinates ] = useState('')
     
     // routing
     const handleReportView = () => {
@@ -22,14 +22,18 @@ export default function Home({ navigation }) {
         navigator.geolocation.getCurrentPosition(
           position => {
             const location = JSON.stringify(position);
-    
-            updateCoordinates({ location });
-     
+             updateCoordinates({ location });
+            
+             console.log('coord', coordinates)
+             console.log('loc', location)
+             if (coordinates !== '') {
+                 getAddress()
+             }
+            
           },
           error => Alert.alert(error.message),
           { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
         );
-        // console.log(coordinates)
       };
 
     //   find address
@@ -54,10 +58,14 @@ export default function Home({ navigation }) {
         // console.log('52', coordinates)
     }, [])
 
-    useEffect(() => {
-        // console.log('56', coordinates)
-        getAddress()
-    })
+    // useEffect(() => {
+    //     if (coordinates !== '') {
+    //         getAddress()
+    //     } 
+    //     // else {
+    //     //     updateAddress()
+    //     // }
+    // })
 
     return (
         <View style={styles.home}>
