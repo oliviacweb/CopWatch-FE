@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import { View, TextInput, Text, StyleSheet, Button } from 'react-native'
 
-export default function Report() {
+export default function Report(props) {
+    const { address } = props.route.params
+    
     const [ parties, updateParties ] = useState('')
     // option to automatically get?
     const [ date, updateDate ] = useState('')
     // option to automatically get? 
     const [ time, updateTime ] = useState('')
     // option to automatically get? 
-    const [ location, updateLocation ] = useState('')
+    const [ location, updateLocation ] = useState(address)
     const [ officerName, updateOfficerName ] = useState('')
     const [ badgeNum, updateBadgeNum ] = useState('')
     const [ description, updateDescription ] = useState('')
@@ -32,54 +34,62 @@ export default function Report() {
 
     return (
         <View>
-            <Text>Involved Parties:</Text>
+            <Text style={styles.title}>File a New Report</Text>
+            <Text style={styles.label}>Involved Parties:</Text>
             <TextInput 
                 placeholder="Enter Involved Parties" 
+                value={parties}
                 onChangeText={updateParties} 
                 style = {styles.input}
 
             />
-            <Text>Date:</Text>
+            <Text style={styles.label}>Date:</Text>
             <TextInput 
                 placeholder="Enter Date" 
+                value={date}
                 onChangeText={updateDate} 
                 style = {styles.input}
 
             />
-            <Text>Time:</Text>
+            <Text style={styles.label}>Time:</Text>
             <TextInput 
                 placeholder="Enter Time" 
+                value={time}
                 onChangeText={updateTime} 
                 style = {styles.input}
 
             />
-            <Text>Location:</Text>
+            <Text style={styles.label}>Location:</Text>
             <TextInput 
-                placeholder="Enter Location" 
+                placeholder={address} 
+                value={location}
                 onChangeText={updateLocation} 
                 style = {styles.input}
 
             />
-            <Text>Officer Name:</Text>
+            <Text style={styles.label}>Officer Name:</Text>
             <TextInput 
                 placeholder="Enter Officer Name(s)" 
+                valuie={officerName}
                 onChangeText={updateOfficerName} 
                 style = {styles.input}
 
             />
-            <Text>Officer Badge Number:</Text>
+            <Text style={styles.label}>Officer Badge Number:</Text>
             <TextInput 
                 placeholder="Enter Officer Badge Number(s)" 
+                value={badgeNum}
                 onChangeText={updateBadgeNum} 
                 style = {styles.input}
 
             />
             
-            <Text>Description:</Text>
+            <Text style={styles.label}>Description:</Text>
             <TextInput 
                 placeholder="Enter A Description Of What Happened" 
+                value={description}
                 onChangeText={updateDescription}
-                style = {styles.input}
+                style = {styles.largeInput}
             />
             <Button 
                 title="Submit Report"
@@ -90,8 +100,27 @@ export default function Report() {
 }
 
 const styles = StyleSheet.create({
+    title: {
+        fontSize: 25,
+        margin: 10,
+        textAlign: 'center'
+    },
+
+    label: {
+        fontSize: 15,
+        marginLeft: 5    
+    },
+
     input: {
         margin: 10,
         fontSize: 15,
+        backgroundColor: '#fff',
+    },
+
+    largeInput: {
+        margin: 10,
+        fontSize: 15,
+        backgroundColor: '#fff',
+        height: 100
     }
 })
