@@ -8,7 +8,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 export default function Home({ navigation }) {
     const [ address, updateAddress ] = useState('')
-    const [ coordinates, updateCoordinates ] = useState()
+    const [ coordinates, updateCoordinates ] = useState({location: {}})
     
     // routing
     const handleReportView = () => {
