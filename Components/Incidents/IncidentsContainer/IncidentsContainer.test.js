@@ -4,7 +4,7 @@ import IncidentsContainer from './IncidentsContainer'
 import { render, fireEvent, waitFor } from "react-native-testing-library"
 
 describe('IncidentsContainer', () => {
-    it('', async () => {
+    it('IncidentsContainer', async () => {
         // const { getByText } = render(<IncidentCard />)
 
         // const title = await waitFor(() => getByText(""))

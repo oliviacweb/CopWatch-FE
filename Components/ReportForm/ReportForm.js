@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { View, TextInput, Text, StyleSheet, Button } from 'react-native'
 
 export default function Report(props) {
+    console.log(props)
     const { address } = props.route.params
-    
+    console.log("address", address)
     const [ parties, updateParties ] = useState('')
     // option to automatically get?
     const [ date, updateDate ] = useState('')

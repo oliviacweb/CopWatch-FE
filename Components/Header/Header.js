@@ -1,8 +1,7 @@
 import React from 'react'
 import { ScrollView, Text, StyleSheet } from 'react-native'
-import { preventAutoHide } from 'expo/build/launch/SplashScreen'
 
-export default function IncidentCard() {
+export default function Header() {
 
     return(
         <ScrollView>

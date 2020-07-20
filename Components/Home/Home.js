@@ -8,7 +8,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 export default function Home({ navigation }) {
     const [ address, updateAddress ] = useState(' ')
-    const [ coordinates, updateCoordinates ] = useState('')
+    const [ coordinates, updateCoordinates ] = useState(' ')
     
     // routing
     const handleReportView = () => {
@@ -22,14 +22,7 @@ export default function Home({ navigation }) {
         navigator.geolocation.getCurrentPosition(
           position => {
             const location = JSON.stringify(position);
-             updateCoordinates({ location });
-            
-             console.log('coord', coordinates)
-             console.log('loc', location)
-             if (coordinates !== '') {
-                 getAddress()
-             }
-            
+             updateCoordinates(location);
           },
           error => Alert.alert(error.message),
           { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
@@ -38,8 +31,8 @@ export default function Home({ navigation }) {
 
     //   find address
     const getAddress = async () => {
-        const apiKey = 'AIzaSyCgPeDHjK8rJcWB2txjYR8ioXjHljDHRWM'
-        const location = coordinates["location"]
+        const apiKey = 'AIzaSyCdTuyV1d3k7iQBMlOWfqurzQy0HmxKdJU'
+        const location = coordinates
         const locationArray = location.split(':')
         const long = locationArray[6].split('').splice(0, 8).join('')
         const lat = locationArray[8].split('').splice(0, 8).join('')
@@ -58,14 +51,12 @@ export default function Home({ navigation }) {
         // console.log('52', coordinates)
     }, [])
 
-    // useEffect(() => {
-    //     if (coordinates !== '') {
-    //         getAddress()
-    //     } 
-    //     // else {
-    //     //     updateAddress()
-    //     // }
-    // })
+    useEffect(() => {
+        console.log(coordinates)
+        if (coordinates !== ' ') {
+            getAddress()
+        }
+    })
 
     return (
         <View style={styles.home}>
