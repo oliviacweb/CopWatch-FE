@@ -2,16 +2,15 @@ import React, { useState } from 'react'
 import { View, TextInput, Text, StyleSheet, Button } from 'react-native'
 
 export default function Report(props) {
-    console.log(props)
-    const { address } = props.route.params
-    console.log("address", address)
+    // const { address } = props.route.params
+
     const [ parties, updateParties ] = useState('')
     // option to automatically get?
     const [ date, updateDate ] = useState('')
-    // option to automatically get? 
+    // option to automatically get?
     const [ time, updateTime ] = useState('')
-    // option to automatically get? 
-    const [ location, updateLocation ] = useState(address)
+    // option to automatically get?
+    const [ location, updateLocation ] = useState('')
     const [ officerName, updateOfficerName ] = useState('')
     const [ badgeNum, updateBadgeNum ] = useState('')
     const [ description, updateDescription ] = useState('')
@@ -33,66 +32,67 @@ export default function Report(props) {
         })
     }
 
+
     return (
         <View>
             <Text style={styles.title}>File a New Report</Text>
             <Text style={styles.label}>Involved Parties:</Text>
-            <TextInput 
-                placeholder="Enter Involved Parties" 
+            <TextInput
+                placeholder="Enter Involved Parties"
                 value={parties}
-                onChangeText={updateParties} 
+                onChangeText={updateParties}
                 style = {styles.input}
 
             />
             <Text style={styles.label}>Date:</Text>
-            <TextInput 
-                placeholder="Enter Date" 
+            <TextInput
+                placeholder="Enter Date"
                 value={date}
-                onChangeText={updateDate} 
+                onChangeText={updateDate}
                 style = {styles.input}
 
             />
             <Text style={styles.label}>Time:</Text>
-            <TextInput 
-                placeholder="Enter Time" 
+            <TextInput
+                placeholder="Enter Time"
                 value={time}
-                onChangeText={updateTime} 
+                onChangeText={updateTime}
                 style = {styles.input}
 
             />
             <Text style={styles.label}>Location:</Text>
-            <TextInput 
-                placeholder={address} 
+            <TextInput
+                placeholder='Enter Location'
                 value={location}
-                onChangeText={updateLocation} 
+                onChangeText={updateLocation}
                 style = {styles.input}
 
             />
             <Text style={styles.label}>Officer Name:</Text>
-            <TextInput 
-                placeholder="Enter Officer Name(s)" 
+            <TextInput
+                placeholder="Enter Officer Name(s)"
                 valuie={officerName}
-                onChangeText={updateOfficerName} 
+                onChangeText={updateOfficerName}
                 style = {styles.input}
 
             />
             <Text style={styles.label}>Officer Badge Number:</Text>
-            <TextInput 
-                placeholder="Enter Officer Badge Number(s)" 
+            <TextInput
+                placeholder="Enter Officer Badge Number(s)"
                 value={badgeNum}
-                onChangeText={updateBadgeNum} 
+                onChangeText={updateBadgeNum}
                 style = {styles.input}
 
             />
-            
+
             <Text style={styles.label}>Description:</Text>
-            <TextInput 
-                placeholder="Enter A Description Of What Happened" 
+            <TextInput
+                placeholder="Enter A Description Of What Happened"
                 value={description}
                 onChangeText={updateDescription}
                 style = {styles.largeInput}
             />
-            <Button 
+            <Button
                 title="Submit Report"
                 onPress={()=> handleSubmit()}
             />
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
 
     label: {
         fontSize: 15,
-        marginLeft: 5    
+        marginLeft: 5
     },
 
     input: {
