@@ -5,7 +5,7 @@ export default function Footer() {
 
     return(
         <ScrollView style={styles.footer}>
-            <Text>Footer</Text>
+            <Text></Text>
             <Button title="home"></Button>
             {/* <Button title="home"></Button> */}
         </ScrollView>
@@ -16,6 +16,9 @@ const styles = StyleSheet.create({
     footer: {
         position: 'absolute',
         bottom: 0,
-        display: 'flex'
+        width: '100%',
+        height: '10%',
+        display: 'flex',
+        backgroundColor: '#fff'
     }
 })

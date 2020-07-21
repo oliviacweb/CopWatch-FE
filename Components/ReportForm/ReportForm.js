@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, TextInput, Text, StyleSheet, Button } from 'react-native'
+import { View, ScrollView, TextInput, Text, StyleSheet, Button } from 'react-native'
 
 export default function Report(props) {
     const { address } = props.route.params
@@ -33,7 +33,7 @@ export default function Report(props) {
     }
 
     return (
-        <View>
+        <ScrollView style={styles.background}>
             <Text style={styles.title}>File a New Report</Text>
             <Text style={styles.label}>Involved Parties:</Text>
             <TextInput 
@@ -84,18 +84,21 @@ export default function Report(props) {
 
             />
             
-            <Text style={styles.label}>Description:</Text>
+            <Text style={styles.label}>Please Provide a Detailed Summary:</Text>
             <TextInput 
                 placeholder="Enter A Description Of What Happened" 
                 value={description}
                 onChangeText={updateDescription}
                 style = {styles.largeInput}
             />
-            <Button 
-                title="Submit Report"
-                onPress={()=> handleSubmit()}
-            />
-        </View>
+            <View style={styles.submitButton}>
+                <Button 
+                    color='#fff'
+                    title="Submit Report"
+                    onPress={()=> handleSubmit()}
+                />
+            </View>
+        </ScrollView>
     )
 }
 
@@ -103,24 +106,51 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 25,
         margin: 10,
-        textAlign: 'center'
+        textAlign: 'center',
+        color: '#003366',
     },
 
     label: {
         fontSize: 15,
-        marginLeft: 5    
+        marginLeft: 10,
+        color: 'white',   
     },
 
     input: {
         margin: 10,
         fontSize: 15,
+        height: 33,
         backgroundColor: '#fff',
+        paddingLeft: 5,
     },
 
     largeInput: {
         margin: 10,
         fontSize: 15,
         backgroundColor: '#fff',
-        height: 100
+        height: 100,
+        paddingLeft: 5,
+    }, 
+
+    background: {
+        backgroundColor: '#003366',
+        height: 700,
+    },
+
+    submitButton: {
+        // marginBottom: 250,
+        width: '88%',
+        marginLeft: '6%',
+        borderRadius: 30,
+        height: 55,
+        color: '#fff',
+        backgroundColor: '#0018f9',
+        borderColor: '#FFF',
+        borderStyle: 'solid',
+        borderWidth: 2,
+        display: 'flex',
+        justifyContent: 'center',
+        fontSize: 40,
+
     }
 })
