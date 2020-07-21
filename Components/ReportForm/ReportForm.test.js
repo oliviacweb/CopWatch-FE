@@ -4,8 +4,11 @@ import ReportForm from './ReportForm'
 import { render, fireEvent, waitFor } from "react-native-testing-library"
 
 describe('ReportForm', () => {
-    xit('Should display 7 inputs', async () => {
-        const { getByPlaceholder } = render(<ReportForm />)
+    it('Should display 7 inputs', async () => {
+        const { getByPlaceholder } = render(
+          <ReportForm
+      
+          />)
 
         const parties = await waitFor(() => getByPlaceholder("Enter Involved Parties"))
         const date = await waitFor(() => getByPlaceholder("Enter Date"))
@@ -25,6 +28,8 @@ describe('ReportForm', () => {
     })
 
     xit('should update display values as they are entered', () => {
-        const { getByDisplayValue } = render(<ReportForm/>)
+        const { getByDisplayValue } = render(
+          <ReportForm
+          />)
     })
 })
