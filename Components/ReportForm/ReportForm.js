@@ -32,6 +32,13 @@ export default function Report(props) {
         })
     }
 
+    const useCurrentLocation = () => {
+        console.log(props.route.params.address)
+        if (props.route.params.address !== '') {
+            updateLocation(props.route.params.address)
+        }
+    }
+
 
     return (
         <View>
