@@ -65,6 +65,7 @@ export default function Home({ navigation }) {
             <Header />
             <View style={styles.reportBtn}>
                 <Button 
+                    color='#fff'
                     title="File a Report"
                     onPress={() => handleReportView()}
                 />
@@ -77,9 +78,26 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
     reportBtn: {
         marginBottom: 250,
+        width: '88%',
+        marginLeft: '6%',
+        borderRadius: 30,
+        height: 55,
+        color: '#fff',
+        backgroundColor: '#0018f9',
+        borderColor: '#FFF',
+        borderStyle: 'solid',
+        borderWidth: 2,
+        display: 'flex',
+        justifyContent: 'center',
+        fontSize: 40,
+
+        // height: 100
     },
 
     home: {
-        height: '100%'
+        height: '100%',
+        backgroundColor: '#003366',
+        display: 'flex',
+        justifyContent: 'center'
     }
 })

@@ -5,7 +5,10 @@ export default function Header() {
 
     return(
         <ScrollView>
-            <Text style={styles.header}>CopWatch</Text>
+            <Text style={styles.header}>
+                <Text style={styles.cop}>Cop
+                </Text>
+            Watch</Text>
         </ScrollView>
     )
     
@@ -16,8 +19,13 @@ const styles = StyleSheet.create({
         fontSize: 50,
         textAlign: 'center',
         borderBottomWidth: 3,
-        borderBottomColor: 'black'
+        borderBottomColor: 'black',
         // backgroundColor: 'red',
-        // color: 'blue'
+        color: '#fff'
+    },
+    cop: {
+        color: '#0018f9',
+        fontWeight: "bold",
+
     }
 })
