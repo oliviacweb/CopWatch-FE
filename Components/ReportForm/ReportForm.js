@@ -66,7 +66,10 @@ export default function Report(props) {
                 value={location}
                 onChangeText={updateLocation}
                 style = {styles.input}
-
+            />
+            <Button
+                title="Use My Location"
+                onPress={() => useCurrentLocation()}
             />
             <Text style={styles.label}>Officer Name:</Text>
             <TextInput
