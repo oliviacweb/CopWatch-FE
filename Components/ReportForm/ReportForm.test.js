@@ -27,7 +27,16 @@ describe('ReportForm', () => {
         expect(description).toBeTruthy()
     })
 
-    xit('should update display values as they are entered', () => {
+    // need a way to mock the address/params...routing
+    xit('Should call useCurrentLocation when Use My Location button is clicked', () => {
+        const { getByText } = render(<ReportForm />)
+
+        fireEvent.press(getByText('Use My Location'))
+        
+        expect(ReportForm.useCurrentLocation()).toHaveBeenCalled()
+    })
+
+    xit('Should update display values as they are entered', () => {
         const { getByDisplayValue } = render(
           <ReportForm
           />)
