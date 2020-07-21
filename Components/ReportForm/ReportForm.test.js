@@ -5,7 +5,10 @@ import { render, fireEvent, waitFor } from "react-native-testing-library"
 
 describe('ReportForm', () => {
     it('Should display 7 inputs', async () => {
-        const { getByPlaceholder } = render(<ReportForm />)
+        const { getByPlaceholder } = render(
+          <ReportForm
+      
+          />)
 
         const parties = await waitFor(() => getByPlaceholder("Enter Involved Parties"))
         const date = await waitFor(() => getByPlaceholder("Enter Date"))
@@ -24,7 +27,18 @@ describe('ReportForm', () => {
         expect(description).toBeTruthy()
     })
 
-    xit('should update display values as they are entered', () => {
-        const { getByDisplayValue } = render(<ReportForm/>)
+    // need a way to mock the address/params...routing
+    xit('Should call useCurrentLocation when Use My Location button is clicked', () => {
+        const { getByText } = render(<ReportForm />)
+
+        fireEvent.press(getByText('Use My Location'))
+        
+        expect(ReportForm.useCurrentLocation()).toHaveBeenCalled()
+    })
+
+    xit('Should update display values as they are entered', () => {
+        const { getByDisplayValue } = render(
+          <ReportForm
+          />)
     })
 })

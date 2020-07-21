@@ -9,6 +9,7 @@ import ReportForm from './Components/ReportForm/ReportForm'
 
 const Stack = createStackNavigator();
 
+
 export default function App() {
   return (
     <NavigationContainer>
