@@ -5,21 +5,20 @@ export default function Report(props) {
     // const { address } = props.route.params
 
     const [ parties, updateParties ] = useState('')
-    // option to automatically get?
     const [ date, updateDate ] = useState('')
-    // option to automatically get?
     const [ time, updateTime ] = useState('')
-    // option to automatically get?
     const [ location, updateLocation ] = useState('')
     const [ officerName, updateOfficerName ] = useState('')
     const [ badgeNum, updateBadgeNum ] = useState('')
     const [ description, updateDescription ] = useState('')
 
+    // calls fn to create our report object...just logs it for now but will eventually tie in api call here.
     const handleSubmit = () => {
         const report = createReportObject()
         console.log(report)
     }
 
+    // creates report object from hooks/state
     const createReportObject = () => {
         return ({
             parties,
@@ -32,9 +31,9 @@ export default function Report(props) {
         })
     }
 
+    // updates location based off of gps and autofills location input
     const useCurrentLocation = () => {
-        console.log(props.route.params.address)
-        if (props.route.params.address !== '') {
+        if (props.route.params.address !== ' ') {
             updateLocation(props.route.params.address)
         }
     }
@@ -43,14 +42,15 @@ export default function Report(props) {
     return (
         <View>
             <Text style={styles.title}>File a New Report</Text>
+
             <Text style={styles.label}>Involved Parties:</Text>
             <TextInput
                 placeholder="Enter Involved Parties"
                 value={parties}
                 onChangeText={updateParties}
                 style = {styles.input}
-
             />
+
             <Text style={styles.label}>Date:</Text>
             <TextInput
                 placeholder="Enter Date"
@@ -59,6 +59,7 @@ export default function Report(props) {
                 style = {styles.input}
 
             />
+
             <Text style={styles.label}>Time:</Text>
             <TextInput
                 placeholder="Enter Time"
@@ -67,6 +68,7 @@ export default function Report(props) {
                 style = {styles.input}
 
             />
+
             <Text style={styles.label}>Location:</Text>
             <TextInput
                 placeholder='Enter Location'
@@ -78,6 +80,7 @@ export default function Report(props) {
                 title="Use My Location"
                 onPress={() => useCurrentLocation()}
             />
+
             <Text style={styles.label}>Officer Name:</Text>
             <TextInput
                 placeholder="Enter Officer Name(s)"
@@ -86,6 +89,7 @@ export default function Report(props) {
                 style = {styles.input}
 
             />
+
             <Text style={styles.label}>Officer Badge Number:</Text>
             <TextInput
                 placeholder="Enter Officer Badge Number(s)"
@@ -102,10 +106,12 @@ export default function Report(props) {
                 onChangeText={updateDescription}
                 style = {styles.largeInput}
             />
+
             <Button
                 title="Submit Report"
                 onPress={()=> handleSubmit()}
             />
+
         </View>
     )
 }

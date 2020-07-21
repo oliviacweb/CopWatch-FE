@@ -6,7 +6,9 @@ import Footer from '../Footer/Footer'
 import ReportForm from '../ReportForm/ReportForm'
 import { NavigationContainer } from '@react-navigation/native';
 
+
 export default function Home({ navigation }) {
+
     const [ address, updateAddress ] = useState(' ')
     const [ coordinates, updateCoordinates ] = useState(' ')
     
@@ -46,15 +48,13 @@ export default function Home({ navigation }) {
           .catch(err => console.error(err))
       }
     
+      // refresh or update???
     //   get coordinates, address on mount
     useEffect(() => {
         findCoordinates()
-        // console.log('52', coordinates)
     }, [])
 
     useEffect(() => {
-        console.log(typeof coordinates)
-        console.log(coordinates)
         if (coordinates !== ' ') {
             getAddress()
         }
@@ -69,10 +69,6 @@ export default function Home({ navigation }) {
                     onPress={() => handleReportView()}
                 />
             </View>
-              
-         
-            {/* <Text>Home Screen</Text> */}
-            {/* <ReportForm /> */}
             <Footer />
         </View>
     )
@@ -81,7 +77,6 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
     reportBtn: {
         marginBottom: 250,
-        // height: 100
     },
 
     home: {
