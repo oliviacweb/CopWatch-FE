@@ -14,7 +14,7 @@
 // }
 
 export const fetchIncidents = async () => {
-  
+
     const url = `http://localhost:5000/api/v1/reports`
     try {
         const response = await fetch(url);
@@ -33,7 +33,7 @@ export const fetchIncidents = async () => {
 
 export const postIncident = async (report) => {
     const corsAnywhere = `https://cors-anywhere.herokuapp.com/`
-    const url = `${corsAnywhere}http://localhost:5000/api/v1/reports/new`
+    const url = `http://localhost:5000/api/v1/reports/new`
     fetch(url, {
         method: 'POST',
         headers: {
@@ -41,14 +41,14 @@ export const postIncident = async (report) => {
         },
         body: JSON.stringify(
             {
-                "description": report.description,
-                "zip_code": report.zip,
-                "city": report.location,
-                "state": report.location,
-                "parties": report.parties,
-                "officer_name": report.officer,
-                "badge_number": report.badgeNum,
-                "created_date": report.date
+                description: report.description,
+                zip_code: report.location,
+                city: report.location,
+                state: report.location,
+                parties: report.parties,
+                officer_name: report.officerName,
+                badge_number: report.badgeNum,
+                created_date: report.date
             }
         )
       })
@@ -94,7 +94,7 @@ export const postIncident = async (report) => {
 //         // //     'Content-Type': 'multipart/form-data'
 //         // //   }
 //         // })
-      
+
 // }
 // export const fetchIncidents = () => {
 //     const corsAnywhere = `https://cors-anywhere.herokuapp.com/`
@@ -112,5 +112,5 @@ export const postIncident = async (report) => {
 //     .finally(function () {
 //       // always executed
 //     });
-      
+
 // }
