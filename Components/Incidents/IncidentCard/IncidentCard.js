@@ -21,10 +21,10 @@ export default function IncidentCard({ incident }) {
 
 const styles = StyleSheet.create({
     card: {
-      fontSize: 25,
+    //   fontSize: 25,
       margin: 10,
-      textAlign: "center",
-      color: "#003366",
+    //   textAlign: "center",
+    //   color: "#003366",
       borderWidth: 1,
       borderColor: "black"
     }

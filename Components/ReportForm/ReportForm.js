@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { View, TextInput, Text, StyleSheet, Button } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { postIncident } from '../../apiCalls'
+
+
 export default function Report(props) {
     // const { address } = props.route.params
 
@@ -16,6 +19,7 @@ export default function Report(props) {
     const handleSubmit = () => {
         const report = createReportObject()
         console.log(report)
+        postIncident(report)
     }
 
     // creates report object from hooks/state
@@ -166,13 +170,13 @@ const styles = StyleSheet.create({
     marginLeft: "6%",
     borderRadius: 30,
     height: 55,
-    color: "#fff",
+    // color: "#fff",
     backgroundColor: "#0018f9",
     borderColor: "#FFF",
     borderStyle: "solid",
     borderWidth: 2,
     display: "flex",
     justifyContent: "center",
-    fontSize: 40,
+    // fontSize: 40,
   },
 });
