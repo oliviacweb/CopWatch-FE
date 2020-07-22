@@ -8,7 +8,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 
 export default function Home({ navigation }) {
-
+    console.log('home', navigation)
     const [ address, updateAddress ] = useState(' ')
     const [ coordinates, updateCoordinates ] = useState(' ')
     
@@ -70,7 +70,7 @@ export default function Home({ navigation }) {
                     onPress={() => handleReportView()}
                 />
             </View>
-            <Footer />
+            <Footer navigation={navigation}/>
         </View>
     )
 }
