@@ -6,6 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import Home from './Components/Home/Home'
 import ReportForm from './Components/ReportForm/ReportForm'
+import IncidentsContainer from './Components/Incidents/IncidentsContainer/IncidentsContainer'
 
 const Stack = createStackNavigator();
 
@@ -14,11 +15,6 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-          {/* <StatusBar barStyle = "dark-content" hidden = {false} backgroundColor = "#00BCD4" translucent = {true}/> */}
-        {/* <View style={styles.container}> */}
-
-
-          {/* <Text>App!</Text> */}
           <Stack.Screen 
             name="Home"
             component={Home}
@@ -27,8 +23,10 @@ export default function App() {
             name="Report Form"
             component={ReportForm}
           />
-          {/* <Home /> */}
-        {/* </View> */}
+          <Stack.Screen
+            name="Incidents Container"
+            component={IncidentsContainer}
+          />
       </Stack.Navigator>
     </NavigationContainer>
   );
