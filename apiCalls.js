@@ -33,23 +33,33 @@ export const fetchIncidents = async () => {
 
 export const postIncident = async (report) => {
     const corsAnywhere = `https://cors-anywhere.herokuapp.com/`
-    const url = `${corsAnywhere}http://localhost:5000/api/v1/reports/new`
+    const url = `http://localhost:5000/api/v1/reports/new`
     fetch(url, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        // headers: {
+        //   'Content-Type': 'application/json'
+        // },
         body: JSON.stringify(
             {
-                "description": report.description,
-                "zip_code": report.zip,
-                "city": report.location,
-                "state": report.location,
-                "parties": report.parties,
-                "officer_name": report.officer,
-                "badge_number": report.badgeNum,
-                "created_date": report.date
+                description: report.description,
+                zip_code: report.zip,
+                city: report.location,
+                state: report.location,
+                parties: report.parties,
+                officer_name: report.officer,
+                badge_number: report.badgeNum,
+                created_date: report.date
             }
+            // {
+            //     "description": report.description,
+            //     "zip_code": report.zip,
+            //     "city": report.location,
+            //     "state": report.location,
+            //     "parties": report.parties,
+            //     "officer_name": report.officer,
+            //     "badge_number": report.badgeNum,
+            //     "created_date": report.date
+            // }
         )
       })
         .then(response => response.json())
