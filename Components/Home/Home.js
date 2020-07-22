@@ -81,14 +81,14 @@ const styles = StyleSheet.create({
         marginLeft: '6%',
         borderRadius: 30,
         height: 55,
-        color: '#fff',
+        // color: '#fff',
         backgroundColor: '#0018f9',
         borderColor: '#FFF',
         borderStyle: 'solid',
         borderWidth: 2,
         display: 'flex',
         justifyContent: 'center',
-        fontSize: 40,
+        // fontSize: 40,
 
         // height: 100
     },
