@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, Text, StyleSheet, Button } from 'react-native'
+import { ScrollView, Text, StyleSheet, Button, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 // import { createStackNavigator } from "@react-navigation/stack";
 
@@ -15,20 +15,26 @@ export default function Footer({ navigation }) {
     }
 
     return(
-        <ScrollView style={styles.footer}>
+        <View style={styles.footer}>
             <Text></Text>
-            <Button 
-                title="home" 
-                style={styles.button}
-                onPress={() => handleHomeView()}
-            />
-            <Button 
-                title="Incidents" 
-                style={styles.button}
-                onPress={() => handleIncidentsView()}
-            />
+
+            <View style={styles.button}>
+                <Button 
+                    title="home" 
+                    
+                    onPress={() => handleHomeView()}
+                />
+            </View>
+
+            <View style={styles.button}>
+                <Button 
+                    title="Incidents" 
+                    
+                    onPress={() => handleIncidentsView()}
+                />
+            </View>
             {/* <Button title="home"></Button> */}
-        </ScrollView>
+        </View>
     )
 }
 
@@ -37,12 +43,18 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 0,
         width: '100%',
-        height: '10%',
-        display: 'flex',
-        backgroundColor: '#fff'
+        height: '15%',
+        // display: 'flex',
+        backgroundColor: '#fff',
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-around'
     },
     button: {
-        display: 'flex',
-        // flex: 1,
+        // backgroundColor: 'red',
+        width: '25%',
+        
+       
+
     }
 })

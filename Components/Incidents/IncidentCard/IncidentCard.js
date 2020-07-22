@@ -1,12 +1,12 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Button } from 'react-native'
 import IncidentsContainer from '../IncidentsContainer/IncidentsContainer'
 
 
 export default function IncidentCard({ incident }) {
 
     return (
-        <View style={styles.card}>
+        <View style={styles.card}> 
             <Text>Incident Id: {incident.id}</Text>
             <Text>Description: {incident.description}</Text>
             {/* <Text>{incident.self.created_date}</Text> */}
@@ -15,7 +15,7 @@ export default function IncidentCard({ incident }) {
             <Text>Zip: {incident.zip_code}</Text>
             <Text>Officer: {incident.officer_name}</Text>
             <Text>Badge Number: {incident.badge_number}</Text>
-        </View>
+       </View>
     )
 }
 
