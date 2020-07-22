@@ -6,7 +6,6 @@ import { NavigationContainer } from '@react-navigation/native';
 // const Stack = createStackNavigator();
 
 export default function Footer({ navigation }) {
-    console.log('footer', navigation)
     const handleIncidentsView = () => {
         navigation.navigate("Incidents Container")
     }

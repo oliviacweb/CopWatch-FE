@@ -8,7 +8,6 @@ import { NavigationContainer } from '@react-navigation/native';
 
 
 export default function Home({ navigation }) {
-    console.log('home', navigation)
     const [ address, updateAddress ] = useState(' ')
     const [ coordinates, updateCoordinates ] = useState(' ')
     
