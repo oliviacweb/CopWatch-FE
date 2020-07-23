@@ -1,6 +1,6 @@
 export const testData = [{
     "badge_number": "12",
-    "city": "Denver",
+    "city": "Thunderdome",
     "created_date": "Tue, Jul 21, 2020 6:19 PM",
     "description": "Report 4",
     "id": 4,
@@ -11,12 +11,12 @@ export const testData = [{
     },
     {
     "badge_number": "",
-    "city": "Denver",
+    "city": "Space",
     "created_date": "Tue, Jul 21, 2020 6:19 PM",
     "description": "Report 4",
     "id": 5,
     "officer_name": "",
-    "parties": "Max Miller",
+    "parties": "Neil Tyson",
     "state": "Colorado",
     "zip_code": "80102"
     },

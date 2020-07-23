@@ -6,13 +6,14 @@ import { render, fireEvent, waitFor } from "react-native-testing-library"
 // import testData file (in root) that has a sample array of incident objects
 import { testData } from '../../../testData'
 
+
 describe('IncidentsCard', () => {
     it('Should display basic info about the incident', async () => {
         const { getByText } = render(<IncidentCard incident={testData[0]} />)
 
         const madMax = await waitFor(() => getByText("Parties: Max Miller"))
 
-        const city = await waitFor(() => getByText("City: Denver"))
+        const city = await waitFor(() => getByText("City: Thunderdome"))
 
         const description = await waitFor(() => getByText("Description: Report 4"))
         
