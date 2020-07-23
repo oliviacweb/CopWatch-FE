@@ -36,17 +36,17 @@ export const postIncident = async (report) => {
     const url = `http://localhost:5000/api/v1/reports/new`
     fetch(url, {
         method: 'POST',
-        // headers: {
-        //   'Content-Type': 'application/json'
-        // },
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify(
             {
                 description: report.description,
-                zip_code: report.zip,
+                zip_code: report.location,
                 city: report.location,
                 state: report.location,
                 parties: report.parties,
-                officer_name: report.officer,
+                officer_name: report.officerName,
                 badge_number: report.badgeNum,
                 created_date: report.date
             }

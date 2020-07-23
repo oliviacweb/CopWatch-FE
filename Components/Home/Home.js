@@ -27,7 +27,7 @@ export default function Home({ navigation }) {
                 updateCoordinates(location);
             }
           },
-          error => Alert.alert(error.message),
+          error => print.alert(error.message),
           { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
         );
       };
