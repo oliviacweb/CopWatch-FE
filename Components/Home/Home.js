@@ -35,7 +35,6 @@ export default function Home({ navigation }) {
 
     //   find address
     const getAddress = async () => {
-        // const apiKey = 'AIzaSyCdTuyV1d3k7iQBMlOWfqurzQy0HmxKdJU'
         const locationArray = coordinates.split(':')
         const long = locationArray[6].split('').splice(0, 8).join('')
         const lat = locationArray[8].split('').splice(0, 8).join('')
