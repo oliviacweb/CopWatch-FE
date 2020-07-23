@@ -5,12 +5,15 @@ import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import ReportForm from '../ReportForm/ReportForm'
 import { NavigationContainer } from '@react-navigation/native';
+import { apiKey } from './apiAccess'
+
+
 
 
 export default function Home({ navigation }) {
     const [ address, updateAddress ] = useState(' ')
     const [ coordinates, updateCoordinates ] = useState(' ')
-    
+
     // routing
     const handleReportView = () => {
         navigation.navigate("Report Form", {
@@ -34,7 +37,6 @@ export default function Home({ navigation }) {
 
     //   find address
     const getAddress = async () => {
-        const apiKey = 'AIzaSyAQDFEeTZryEEITzGuHEP6B2TtVzAnB0F0'
         const locationArray = coordinates.split(':')
         const long = locationArray[6].split('').splice(0, 8).join('')
         const lat = locationArray[8].split('').splice(0, 8).join('')
@@ -43,12 +45,10 @@ export default function Home({ navigation }) {
         // move to api calls?
         await fetch(url)
           .then(res => res.json())
-        //   .then(data => updateAddress(data.results[0].formatted_address))
-          .then(data => console.log(data.results[0]))
+          .then(data => updateAddress(data.results[0].formatted_address))
+        //   .then(data => console.log(data.results[0]))
           .catch(err => console.error(err))
       }
-    
-      
 
       // refresh or update???
     //   get coordinates, address on mount
@@ -66,7 +66,7 @@ export default function Home({ navigation }) {
         <View style={styles.home}>
             <Header />
             <View style={styles.reportBtn}>
-                <Button 
+                <Button
                     color='#fff'
                     title="File a Report"
                     onPress={() => handleReportView()}

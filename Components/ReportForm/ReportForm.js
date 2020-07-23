@@ -41,9 +41,7 @@ export default function Report(props) {
             updateLocation(props.route.params.address)
         }
     }
-
     
-
     // image
     const pickImage = async () => {
       try {
@@ -103,7 +101,7 @@ export default function Report(props) {
         <Text style={styles.label}>Time:</Text>
         <TextInput
           placeholder="Enter Time"
-          value={time}
+            value={time}
           onChangeText={updateTime}
           style={styles.input}
         />

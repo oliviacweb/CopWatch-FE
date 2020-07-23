@@ -14,7 +14,6 @@
 // }
 
 export const fetchIncidents = async () => {
-  
     const url = `http://localhost:5000/api/v1/reports`
     try {
         const response = await fetch(url);
@@ -23,6 +22,7 @@ export const fetchIncidents = async () => {
                 throw new error(error);
             }
         const data = await response.json();
+        console.log(data)
         return data;
     }
     catch (error) {
@@ -93,7 +93,7 @@ export const postIncident = async (report) => {
 //         // //     'Content-Type': 'multipart/form-data'
 //         // //   }
 //         // })
-      
+
 // }
 // export const fetchIncidents = () => {
 //     const corsAnywhere = `https://cors-anywhere.herokuapp.com/`
@@ -111,5 +111,5 @@ export const postIncident = async (report) => {
 //     .finally(function () {
 //       // always executed
 //     });
-      
+
 // }
