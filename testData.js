@@ -54,3 +54,5 @@ export const testData = [{
     "zip_code": "12345"
     }
 ]
+
+export const coords = '{"timestamp":1595519533194,"mocked":false,"coords":{"altitude":1566.199951171875,"heading":0,"longitude":-104.9965745,"speed":0,"latitude":39.7508965,"accuracy":13.562000274658203}}'
