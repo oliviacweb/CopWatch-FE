@@ -14,7 +14,6 @@
 // }
 
 export const fetchIncidents = async () => {
-
     const url = `http://localhost:5000/api/v1/reports`
     try {
         const response = await fetch(url);
@@ -26,6 +25,7 @@ export const fetchIncidents = async () => {
         return data;
     }
     catch (error) {
+        console.log(error)
         return false
     }
 }

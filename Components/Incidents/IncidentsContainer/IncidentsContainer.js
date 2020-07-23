@@ -16,7 +16,7 @@ export default function IncidentsContainer() {
             // .then(response => response.json())
 
         console.log('data', incidentsData)
-        if (incidentsData !== undefined) {
+        if (incidentsData !== undefined && incidentsData !== false) {
             updateIncidents(incidentsData)
         }
     }
