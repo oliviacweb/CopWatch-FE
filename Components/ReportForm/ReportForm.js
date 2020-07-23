@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import { View, TextInput, Text, StyleSheet, Button } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { View, TextInput, Text, StyleSheet, Button, Image } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { postIncident } from '../../apiCalls'
-
+import * as ImagePicker from 'expo-image-picker'
+import * as Permissions from 'expo-permissions'
 
 export default function Report(props) {
-    // const { address } = props.route.params
 
     const [ parties, updateParties ] = useState('')
     const [ date, updateDate ] = useState('')
@@ -14,11 +14,11 @@ export default function Report(props) {
     const [ officerName, updateOfficerName ] = useState('')
     const [ badgeNum, updateBadgeNum ] = useState('')
     const [ description, updateDescription ] = useState('')
+    const [ image, updateImage ] = useState('')
 
     // calls fn to create our report object...just logs it for now but will eventually tie in api call here.
     const handleSubmit = () => {
         const report = createReportObject()
-        console.log(report)
         postIncident(report)
     }
 
@@ -41,6 +41,41 @@ export default function Report(props) {
             updateLocation(props.route.params.address)
         }
     }
+
+    
+
+    // image
+    const pickImage = async () => {
+      try {
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          allowsEditing: true,
+          aspect: [4, 3],
+          quality: 1,
+        });
+        if (!result.cancelled) {
+          updateImage({ image: result.uri });
+        }
+  
+        console.log(result);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+
+    const getPermissionAsync = async () => {
+      if (Constants.platform.ios) {
+        const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+        if (status !== 'granted') {
+          alert('Sorry, we need camera roll permissions to make this work!');
+        }
+      }
+    }
+
+    useEffect(() => {
+      getPermissionAsync()
+    , []})
 
 
     return (
@@ -103,6 +138,10 @@ export default function Report(props) {
           style={styles.largeInput}
           multiline={true}
         />
+
+        <Button title="Pick an image from camera roll" onPress={pickImage} />
+        {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+
         <View style={styles.submitButton}>
           <Button
             color="#fff"

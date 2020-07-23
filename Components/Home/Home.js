@@ -34,20 +34,22 @@ export default function Home({ navigation }) {
 
     //   find address
     const getAddress = async () => {
-        console.log('coords', coordinates)
-        const apiKey = 'AIzaSyCdTuyV1d3k7iQBMlOWfqurzQy0HmxKdJU'
+        const apiKey = 'AIzaSyAQDFEeTZryEEITzGuHEP6B2TtVzAnB0F0'
         const locationArray = coordinates.split(':')
         const long = locationArray[6].split('').splice(0, 8).join('')
         const lat = locationArray[8].split('').splice(0, 8).join('')
         const latLong = `${lat},${long}`
         const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latLong}&key=${apiKey}`
+        // move to api calls?
         await fetch(url)
           .then(res => res.json())
-          .then(data => updateAddress(data.results[0].formatted_address))
-        //   .then(data => console.log(data.results[0].formatted_address))
+        //   .then(data => updateAddress(data.results[0].formatted_address))
+          .then(data => console.log(data.results[0]))
           .catch(err => console.error(err))
       }
     
+      
+
       // refresh or update???
     //   get coordinates, address on mount
     useEffect(() => {
