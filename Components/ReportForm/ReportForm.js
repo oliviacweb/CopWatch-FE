@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, TextInput, Text, StyleSheet, Button, Image } from 'react-native'
+import { View, TextInput, Text, StyleSheet, Button, Platform, ScrollView } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { postIncident } from '../../apiCalls'
 import * as ImagePicker from 'expo-image-picker'
@@ -86,6 +86,7 @@ export default function Report(props) {
         contentContainerStyle={styles.container}
         scrollEnabled={true}
       >
+      <ScrollView>
         <Text style={styles.title}>File a New Report</Text>
         <Text style={styles.label}>Involved Parties:</Text>
         <TextInput
@@ -145,14 +146,14 @@ export default function Report(props) {
         {/* <Image source={{image}} /> */}
         {image !== '' && <Image source={image} style={{ width: 150, height: 150 }} />}
      
-
-        <View style={styles.submitButton}>
-          <Button
-            color="#fff"
-            title="Submit Report"
-            onPress={() => handleSubmit()}
-          />
-        </View>
+          <View style={styles.submitButton}>
+            <Button
+              color={Platform.OS === "ios" ? "#fff" : null}
+              title="Submit Report"
+              onPress={() => handleSubmit()}
+            />
+          </View>
+        </ScrollView>
       </KeyboardAwareScrollView>
     );
 }
@@ -162,15 +163,15 @@ const styles = StyleSheet.create({
     fontSize: 25,
     margin: 10,
     textAlign: "center",
-    color: "#003366",
+    color: "#fff",
   },
 
   label: {
     fontSize: 15,
     marginLeft: 10,
-    color: "white",
+    color: "#fff",
     flex: 1,
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
   },
 
   input: {
@@ -206,15 +207,16 @@ const styles = StyleSheet.create({
   },
 
   submitButton: {
-    marginTop: 12,
-    width: "88%",
-    marginLeft: "6%",
+    // marginTop: 5,
+    width: "90%",
+    paddingLeft: 5,
+    margin: 10,
     borderRadius: 30,
     height: 55,
-    backgroundColor: "#0018f9",
-    borderColor: "#FFF",
-    borderStyle: "solid",
-    borderWidth: 2,
+    backgroundColor: Platform.OS === "ios" ? "#0018f0" : null,
+    borderColor: Platform.OS === "ios" ? "#FFF" : null,
+    borderStyle: Platform.OS === "ios" ? "solid" : null,
+    borderWidth: Platform.OS === "ios" ? 2 : null,
     display: "flex",
     justifyContent: "center",
   },

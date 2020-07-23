@@ -11,8 +11,10 @@ export default function IncidentsContainer() {
   useEffect(() => {
     async function getIncidents() {
         const incidentsData = await fetchIncidents()
-        console.log('incidentsData', incidentsData)
-        if (incidentsData !== undefined) {
+            // .then(response => response.json())
+
+        console.log('data', incidentsData)
+        if (incidentsData !== undefined && incidentsData !== false) {
             updateIncidents(incidentsData)
         }
     }
