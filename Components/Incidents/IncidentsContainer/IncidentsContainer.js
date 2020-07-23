@@ -23,7 +23,7 @@ export default function IncidentsContainer() {
     // maps over all incidents and creatre Incident Cards
     const allIncidentCards = () => {
         console.log('incidents', incidents)
-        if (incidents !== undefined) {
+        if (incidents !== undefined && incidents) {
             return incidents.map(incident => <IncidentCard incident={incident} key={incident.id}/>)
 
         }

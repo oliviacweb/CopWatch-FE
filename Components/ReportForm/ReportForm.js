@@ -4,9 +4,10 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { postIncident } from '../../apiCalls'
 import * as ImagePicker from 'expo-image-picker'
 import * as Permissions from 'expo-permissions'
+import Constants from 'expo-constants';
+
 
 export default function Report(props) {
-
     const [ parties, updateParties ] = useState('')
     const [ date, updateDate ] = useState('')
     const [ time, updateTime ] = useState('')
@@ -16,7 +17,7 @@ export default function Report(props) {
     const [ description, updateDescription ] = useState('')
     const [ image, updateImage ] = useState('')
 
-    // calls fn to create our report object...just logs it for now but will eventually tie in api call here.
+    // calls fn to create our report object and then posts the incident
     const handleSubmit = () => {
         const report = createReportObject()
         postIncident(report)
@@ -52,13 +53,15 @@ export default function Report(props) {
           quality: 1,
         });
         if (!result.cancelled) {
-          updateImage({ image: result.uri });
+          updateImage(result.uri);
+          // updateImage({ image: result.uri });
         }
   
         console.log(result);
       } catch (error) {
         console.log(error);
       }
+      console.log('image', image)
     }
 
 
@@ -137,8 +140,11 @@ export default function Report(props) {
           multiline={true}
         />
 
-        <Button title="Pick an image from camera roll" onPress={pickImage} />
-        {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+        
+        <Button title="Add an Image" onPress={pickImage} />
+        {/* <Image source={{image}} /> */}
+        {image !== '' && <Image source={image} style={{ width: 150, height: 150 }} />}
+     
 
         <View style={styles.submitButton}>
           <Button
@@ -183,8 +189,6 @@ const styles = StyleSheet.create({
     height: 100,
     paddingLeft: 5,
     width: "90%",
-  
-    
   },
 
   container: {
@@ -207,13 +211,11 @@ const styles = StyleSheet.create({
     marginLeft: "6%",
     borderRadius: 30,
     height: 55,
-    // color: "#fff",
     backgroundColor: "#0018f9",
     borderColor: "#FFF",
     borderStyle: "solid",
     borderWidth: 2,
     display: "flex",
     justifyContent: "center",
-    // fontSize: 40,
   },
 });

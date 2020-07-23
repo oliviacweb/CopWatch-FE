@@ -1,34 +1,33 @@
 // const axios = require('axios');
 
-// export const fetchIncidents = async () => {
-//     const corsAnywhere = `https://cors-anywhere.herokuapp.com/`
-//     const url = `${corsAnywhere}http://localhost:5000/api/v1/reports`
-//     const data = await fetch(url,{
-//         method: "GET"
-//     })
-//         // .then(res  => res.json())
-//         .then(res => console.log(res))
-//         .catch(err => console.error(err))
-//     console.log(data)
-//     return data
-// }
-
 export const fetchIncidents = async () => {
     const url = `http://localhost:5000/api/v1/reports`
-    try {
-        const response = await fetch(url);
-            if(!response.ok) {
-                console.log(response)
-                throw new error(error);
-            }
-        const data = await response.json();
-        console.log(data)
-        return data;
-    }
-    catch (error) {
-        return false
-    }
+    const data = await fetch(url,{
+        method: "GET"
+    })
+        .then(res  => res.json())
+        // .then(res => console.log(res))
+        .catch(err => console.error(err))
+    console.log(data)
+    return data
 }
+
+// export const fetchIncidents = async () => {
+//     const url = `http://localhost:5000/api/v1/reports`
+//     try {
+//         const response = await fetch(url);
+//             if(!response.ok) {
+//                 console.log(response)
+//                 throw new error(error);
+//             }
+//         const data = await response.json();
+//         console.log(data)
+//         return data;
+//     }
+//     catch (error) {
+//         return false
+//     }
+// }
 
 
 export const postIncident = async (report) => {
