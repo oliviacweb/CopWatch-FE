@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, TextInput, Text, StyleSheet, Button } from 'react-native'
+import { View, TextInput, Text, StyleSheet, Button, Platform } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { postIncident } from '../../apiCalls'
 
@@ -105,7 +105,7 @@ export default function Report(props) {
         />
         <View style={styles.submitButton}>
           <Button
-            color="#fff"
+            color={Platform.OS === "ios" ? "#fff" : null}
             title="Submit Report"
             onPress={() => handleSubmit()}
           />
@@ -125,9 +125,9 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 15,
     marginLeft: 10,
-    color: "white",
+    color: "#fff",
     flex: 1,
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
   },
 
   input: {
@@ -146,8 +146,6 @@ const styles = StyleSheet.create({
     height: 100,
     paddingLeft: 5,
     width: "90%",
-  
-    
   },
 
   container: {
@@ -167,16 +165,14 @@ const styles = StyleSheet.create({
   submitButton: {
     marginTop: 12,
     width: "88%",
-    marginLeft: "6%",
+    marginLeft: "4%",
     borderRadius: 30,
     height: 55,
-    // color: "#fff",
-    backgroundColor: "#0018f9",
-    borderColor: "#FFF",
-    borderStyle: "solid",
-    borderWidth: 2,
+    backgroundColor: Platform.OS === "ios" ? "#0018f0" : null,
+    borderColor: Platform.OS === "ios" ? "#FFF" : null,
+    borderStyle: Platform.OS === "ios" ? "solid" : null,
+    borderWidth: Platform.OS === "ios" ? 2 : null,
     display: "flex",
     justifyContent: "center",
-    // fontSize: 40,
   },
 });
