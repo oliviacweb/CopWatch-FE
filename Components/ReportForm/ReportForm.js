@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, TextInput, Text, StyleSheet, Button, Platform, ScrollView } from 'react-native'
+import { View, TextInput, Text, StyleSheet, Button, Platform, ScrollView, Image } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { postIncident } from '../../apiCalls'
 import * as ImagePicker from 'expo-image-picker'
@@ -52,13 +52,11 @@ export default function Report(props) {
           aspect: [4, 3],
           quality: 1,
         });
-        if (!result.cancelled) {
+         if (!result.cancelled) {
           updateImage(result.uri);
-          // updateImage({ image: result.uri });
+          // updateImage(result.uri);
         }
-  
-        console.log(result);
-      } catch (error) {
+        } catch (error) {
         console.log(error);
       }
       console.log('image', image)
@@ -141,10 +139,11 @@ export default function Report(props) {
           multiline={true}
         />
 
-        
+        <View> 
         <Button title="Add an Image" onPress={pickImage} />
         {/* <Image source={{image}} /> */}
-        {image !== '' && <Image source={image} style={{ width: 150, height: 150 }} />}
+        {image !== '' && <Image source={{uri: image}} style={{ width: 150, height: 150 }} />}
+        </View>
      
           <View style={styles.submitButton}>
             <Button
