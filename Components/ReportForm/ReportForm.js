@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, TextInput, Text, StyleSheet, Button, Platform } from 'react-native'
+import { View, TextInput, Text, StyleSheet, Button, Platform, ScrollView } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { postIncident } from '../../apiCalls'
 
@@ -50,66 +50,74 @@ export default function Report(props) {
         contentContainerStyle={styles.container}
         scrollEnabled={true}
       >
-        <Text style={styles.title}>File a New Report</Text>
-        <Text style={styles.label}>Involved Parties:</Text>
-        <TextInput
-          placeholder="Enter Involved Parties"
-          value={parties}
-          onChangeText={updateParties}
-          style={styles.input}
-        />
-        <Text style={styles.label}>Date:</Text>
-        <TextInput
-          placeholder="Enter Date"
-          value={date}
-          onChangeText={updateDate}
-          style={styles.input}
-        />
-        <Text style={styles.label}>Time:</Text>
-        <TextInput
-          placeholder="Enter Time"
-          value={time}
-          onChangeText={updateTime}
-          style={styles.input}
-        />
-        <Text style={styles.label}>Location:</Text>
-        <TextInput
-          placeholder="Enter Location"
-          value={location}
-          onChangeText={updateLocation}
-          style={styles.input}
-        />
-        <Button title="Use My Location" onPress={() => useCurrentLocation()} />
-        <Text style={styles.label}>Officer Name:</Text>
-        <TextInput
-          placeholder="Enter Officer Name(s)"
-          valuie={officerName}
-          onChangeText={updateOfficerName}
-          style={styles.input}
-        />
-        <Text style={styles.label}>Officer Badge Number:</Text>
-        <TextInput
-          placeholder="Enter Officer Badge Number(s)"
-          value={badgeNum}
-          onChangeText={updateBadgeNum}
-          style={styles.input}
-        />
-
-        <Text style={styles.label}>Please Provide a Detailed Summary:</Text>
-        <TextInput
-          placeholder="Enter A Description Of What Happened"
-          value={description}
-          onChangeText={updateDescription}
-          style={styles.largeInput}
-          multiline={true}
-        />
-        <View style={styles.submitButton}>
-          <Button
-            color={Platform.OS === "ios" ? "#fff" : null}
-            title="Submit Report"
-            onPress={() => handleSubmit()}
+        <ScrollView>
+          <Text style={styles.title}>File a New Report</Text>
+          <Text style={styles.label}>Involved Parties:</Text>
+          <TextInput
+            placeholder="Enter Involved Parties"
+            value={parties}
+            onChangeText={updateParties}
+            style={styles.input}
           />
-        </View>
+          <Text style={styles.label}>Date:</Text>
+          <TextInput
+            placeholder="Enter Date"
+            value={date}
+            onChangeText={updateDate}
+            style={styles.input}
+          />
+          <Text style={styles.label}>Time:</Text>
+          <TextInput
+            placeholder="Enter Time"
+            value={time}
+            onChangeText={updateTime}
+            style={styles.input}
+          />
+          <Text style={styles.label}>Location:</Text>
+          <TextInput
+            placeholder="Enter Location"
+            value={location}
+            onChangeText={updateLocation}
+            style={styles.input}
+          />
+          <View style={styles.submitButton}>
+            <Button
+              color={Platform.OS === "ios" ? "#fff" : null}
+              title="Use Current Location"
+              onPress={() => useCurrentLocation()}
+            />
+          </View>
+          <Text style={styles.label}>Officer Name:</Text>
+          <TextInput
+            placeholder="Enter Officer Name(s)"
+            valuie={officerName}
+            onChangeText={updateOfficerName}
+            style={styles.input}
+          />
+          <Text style={styles.label}>Officer Badge Number:</Text>
+          <TextInput
+            placeholder="Enter Officer Badge Number(s)"
+            value={badgeNum}
+            onChangeText={updateBadgeNum}
+            style={styles.input}
+          />
+
+          <Text style={styles.label}>Please Provide a Detailed Summary:</Text>
+          <TextInput
+            placeholder="Enter A Description Of What Happened"
+            value={description}
+            onChangeText={updateDescription}
+            style={styles.largeInput}
+            multiline={true}
+          />
+          <View style={styles.submitButton}>
+            <Button
+              color={Platform.OS === "ios" ? "#fff" : null}
+              title="Submit Report"
+              onPress={() => handleSubmit()}
+            />
+          </View>
+        </ScrollView>
       </KeyboardAwareScrollView>
     );
 }
@@ -119,7 +127,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     margin: 10,
     textAlign: "center",
-    color: "#003366",
+    color: "#fff",
   },
 
   label: {
@@ -163,9 +171,10 @@ const styles = StyleSheet.create({
   },
 
   submitButton: {
-    marginTop: 12,
-    width: "88%",
-    marginLeft: "4%",
+    // marginTop: 5,
+    width: "90%",
+    paddingLeft: 5,
+    margin: 10,
     borderRadius: 30,
     height: 55,
     backgroundColor: Platform.OS === "ios" ? "#0018f0" : null,
