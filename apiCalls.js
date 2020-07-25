@@ -1,13 +1,18 @@
 export const fetchIncidents = async () => {
-    const url = 'https://copwatch-be.herokuapp.com/api/v1/reports'
-    const data = await fetch(url,{
-        method: "GET"
-    })
-        .then(res  => res.json())
-        // .then(res => console.log(res))
-        .catch(err => console.error(err))
-    console.log(data)
-    return data
+    const url = `https://copwatch-be.herokuapp.com/api/v1/reports`
+    try {
+        const response = await fetch(url);
+            if(!response.ok) {
+                console.log(response)
+                throw new error(error);
+            }
+        const data = await response.json();
+        return data;
+    }
+    catch (error) {
+        console.log(error)
+        return false
+    }
 }
 
 export const postIncident = async (report) => {
