@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ScrollView, TextInput, StyleSheet, Button } from 'react-native'
+import { ScrollView, TextInput, StyleSheet, Button, View } from 'react-native'
 import { fetchIncidents } from '../../../apiCalls'
 import IncidentCard from '../IncidentCard/IncidentCard'
 import Footer from '../../Footer/Footer'
@@ -69,29 +69,35 @@ export default function IncidentsContainer({ navigation }) {
     }
     
     return (
-        <ScrollView >
-            <TextInput
-                placeholder="search incidents"
-                value={searchInput}
-                onChangeText={updateSearchInput}
-                style={styles.search}
-        />
-            <Button 
-                title="SEARCH"
-                onPress={handleSearch}
+        <View style={styles.container}>
+            <ScrollView >
+                <TextInput
+                    placeholder="search incidents"
+                    value={searchInput}
+                    onChangeText={updateSearchInput}
+                    style={styles.search}
             />
-            <Button 
-                title="CLEAR RESULTS"
-                onPress={handleClear}
-            />
-            {allIncidentCards()}
-        </ScrollView>
+                <Button 
+                    title="SEARCH"
+                    onPress={handleSearch}
+                />
+                <Button 
+                    title="CLEAR RESULTS"
+                    onPress={handleClear}
+                />
+                {allIncidentCards()}
+            </ScrollView>
+            <Footer navigation={navigation}/>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     search: {
         backgroundColor: '#fff'
+    },
+    container: {
+        backgroundColor: "#003366",
     }
 
 })
