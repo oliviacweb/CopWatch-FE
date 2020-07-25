@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Button, Platform } from 'react-native';
 
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import ReportForm from '../ReportForm/ReportForm'
 import { NavigationContainer } from '@react-navigation/native';
+import { apiKey } from './apiKey.js'
+
 
 
 export default function Home({ navigation }) {
     const [ address, updateAddress ] = useState(' ')
     const [ coordinates, updateCoordinates ] = useState(' ')
-    
+
     // routing
     const handleReportView = () => {
         navigation.navigate("Report Form", {
@@ -34,8 +36,6 @@ export default function Home({ navigation }) {
 
     //   find address
     const getAddress = async () => {
-        console.log('coords', coordinates)
-        const apiKey = 'AIzaSyCdTuyV1d3k7iQBMlOWfqurzQy0HmxKdJU'
         const locationArray = coordinates.split(':')
         const long = locationArray[6].split('').splice(0, 8).join('')
         const lat = locationArray[8].split('').splice(0, 8).join('')
@@ -47,7 +47,7 @@ export default function Home({ navigation }) {
         //   .then(data => console.log(data.results[0].formatted_address))
           .catch(err => console.error(err))
       }
-    
+
       // refresh or update???
     //   get coordinates, address on mount
     useEffect(() => {
@@ -65,7 +65,7 @@ export default function Home({ navigation }) {
             <Header />
             <View style={styles.reportBtn}>
                 <Button 
-                    color='#fff'
+                    color= {Platform.OS === 'ios' ? '#fff' : null}
                     title="File a Report"
                     onPress={() => handleReportView()}
                 />
@@ -83,10 +83,10 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         height: 55,
         // color: '#fff',
-        backgroundColor: '#0018f9',
-        borderColor: '#FFF',
-        borderStyle: 'solid',
-        borderWidth: 2,
+        backgroundColor: Platform.OS === 'ios'? '#0018f0' : null,
+        borderColor: Platform.OS === 'ios'? '#FFF' : null,
+        borderStyle: Platform.OS === 'ios'? 'solid' : null,
+        borderWidth: Platform.OS === 'ios'? 2 : null,
         display: 'flex',
         justifyContent: 'center',
         // fontSize: 40,

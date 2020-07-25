@@ -14,8 +14,8 @@
 // }
 
 export const fetchIncidents = async () => {
-  
-    const url = `http://localhost:5000/api/v1/reports`
+
+    const url = `https://copwatch-be.herokuapp.com/api/v1/reports`
     try {
         const response = await fetch(url);
             if(!response.ok) {
@@ -32,8 +32,9 @@ export const fetchIncidents = async () => {
 
 
 export const postIncident = async (report) => {
-    const corsAnywhere = `https://cors-anywhere.herokuapp.com/`
-    const url = `http://localhost:5000/api/v1/reports/new`
+
+    // const corsAnywhere = `https://cors-anywhere.herokuapp.com/`
+    const url = `https://copwatch-be.herokuapp.com/api/v1/reports/new`
     fetch(url, {
         method: 'POST',
         headers: {
@@ -104,7 +105,7 @@ export const postIncident = async (report) => {
 //         // //     'Content-Type': 'multipart/form-data'
 //         // //   }
 //         // })
-      
+
 // }
 // export const fetchIncidents = () => {
 //     const corsAnywhere = `https://cors-anywhere.herokuapp.com/`
@@ -122,5 +123,5 @@ export const postIncident = async (report) => {
 //     .finally(function () {
 //       // always executed
 //     });
-      
+
 // }

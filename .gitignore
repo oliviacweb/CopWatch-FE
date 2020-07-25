@@ -9,6 +9,8 @@ npm-debug.*
 *.orig.*
 web-build/
 
+Components/Home/apiKey.js
+
 .env
 
 # macOS
