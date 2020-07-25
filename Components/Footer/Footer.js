@@ -27,18 +27,19 @@ export default function Footer({ navigation }) {
       <View style={styles.footer}>
         <TouchableHighlight onPress={() => handleHomeView()}>
           <View style={styles.button}>
-
+            {homeIcon}
             <Text>Home</Text>
           </View>
         </TouchableHighlight>
         <TouchableHighlight onPress={() => handleFileReportView()}>
           <View style={styles.button}>
- 
+            {addReportIcon}
             <Text>File A Report</Text>
           </View>
         </TouchableHighlight>
         <TouchableHighlight onPress={() => handleIncidentsView()}>
           <View style={styles.button}>
+            {viewIncidentsIcon}
             <Text>View Incidents</Text>
           </View>
         </TouchableHighlight>
