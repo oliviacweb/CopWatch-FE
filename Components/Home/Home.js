@@ -41,10 +41,11 @@ export default function Home({ navigation }) {
         const lat = locationArray[8].split('').splice(0, 8).join('')
         const latLong = `${lat},${long}`
         const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latLong}&key=${apiKey}`
+        // move to api calls?
         await fetch(url)
           .then(res => res.json())
           .then(data => updateAddress(data.results[0].formatted_address))
-        //   .then(data => console.log(data.results[0].formatted_address))
+        //   .then(data => console.log(data.results[0]))
           .catch(err => console.error(err))
       }
 
