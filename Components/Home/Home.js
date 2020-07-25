@@ -5,12 +5,13 @@ import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import ReportForm from '../ReportForm/ReportForm'
 import { NavigationContainer } from '@react-navigation/native';
+import { apiKey } from './apiKey.js'
 
 
 export default function Home({ navigation }) {
     const [ address, updateAddress ] = useState(' ')
     const [ coordinates, updateCoordinates ] = useState(' ')
-    
+
     // routing
     const handleReportView = () => {
         navigation.navigate("Report Form", {
@@ -34,7 +35,6 @@ export default function Home({ navigation }) {
 
     //   find address
     const getAddress = async () => {
-        const apiKey = 'AIzaSyCdTuyV1d3k7iQBMlOWfqurzQy0HmxKdJU'
         const locationArray = coordinates.split(':')
         const long = locationArray[6].split('').splice(0, 8).join('')
         const lat = locationArray[8].split('').splice(0, 8).join('')
@@ -46,7 +46,7 @@ export default function Home({ navigation }) {
         //   .then(data => console.log(data.results[0].formatted_address))
           .catch(err => console.error(err))
       }
-    
+
       // refresh or update???
     //   get coordinates, address on mount
     useEffect(() => {
@@ -63,7 +63,7 @@ export default function Home({ navigation }) {
         <View style={styles.home}>
             <Header />
             <View style={styles.reportBtn}>
-                <Button 
+                <Button
                     color='#fff'
                     title="File a Report"
                     onPress={() => handleReportView()}
