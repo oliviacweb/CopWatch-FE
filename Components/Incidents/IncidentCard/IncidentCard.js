@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, Button } from 'react-native'
-import IncidentsContainer from '../IncidentsContainer/IncidentsContainer'
+// import IncidxentsContainer from '../IncidentsContainer/IncidentsContainer'
 
 
 export default function IncidentCard({ incident }) {
@@ -13,6 +13,7 @@ export default function IncidentCard({ incident }) {
             <Text>City: {incident.city}</Text>
             <Text>State: {incident.state}</Text>
             <Text>Zip: {incident.zip_code}</Text>
+            <Text>Parties: {incident.parties}</Text>
             <Text>Officer: {incident.officer_name}</Text>
             <Text>Badge Number: {incident.badge_number}</Text>
        </View>
