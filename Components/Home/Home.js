@@ -5,8 +5,7 @@ import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import ReportForm from '../ReportForm/ReportForm'
 import { NavigationContainer } from '@react-navigation/native';
-import { apiKey } from './apiAccess'
-
+import { apiKey } from './apiKey.js'
 
 
 
