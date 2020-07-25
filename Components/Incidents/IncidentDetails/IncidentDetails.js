@@ -1,10 +1,10 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import Footer from '.'
+import Footer from '../../Footer/Footer'
 
 export default function IncidentDetails(props) {
     const incident = props.route.params.incident
-
+    const { navigation } = props
     return (
         <View>
             <View style={styles.container}>
@@ -18,7 +18,7 @@ export default function IncidentDetails(props) {
                 <Text style={styles.text}>Officer: {incident.officer_name}</Text>
                 <Text style={styles.text}>Badge Number: {incident.badge_number}</Text>
             </View>
-            <Footer navigation={navigation}>
+            <Footer navigation={navigation}/>
         </View>
     )
     
