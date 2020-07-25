@@ -34,12 +34,12 @@ const styles = StyleSheet.create({
     card: {
       fontSize: 25,
       padding: 10,
-      margin: 10,
+      marginLeft: 10,
+      marginRight: 10,
+      marginTop: 10,
       borderStyle: "solid",
       borderRadius: 10,
       backgroundColor: "#fff",
-    //   textAlign: "center",
-    //   color: "#003366",
       borderWidth: 1,
       borderColor: "black"
     },
