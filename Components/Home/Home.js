@@ -10,11 +10,13 @@ import { apiKey } from './apiKey.js'
 
 
 export default function Home({ navigation }) {
-    const [ address, updateAddress ] = useState(' ')
+    // const [ address, updateAddress ] = useState(' ')
+    const [ address, updateAddress ] = useState({street: '', city: '', state: '', zip: '', formattedAddress: ''})
     const [ coordinates, updateCoordinates ] = useState(' ')
 
     // routing
     const handleReportView = () => {
+        // console.log(address)
         navigation.navigate("Report Form", {
             address
         })
@@ -44,7 +46,7 @@ export default function Home({ navigation }) {
         // move to api calls?
         await fetch(url)
           .then(res => res.json())
-          .then(data => updateAddress(data.results[0].formatted_address))
+          .then(data => updateAddress({street: `${data.results[0].address_components[0].long_name} ${data.results[0].address_components[1].long_name}`, city: data.results[0].address_components[3].long_name, state: data.results[0].address_components[5].long_name, zip: data.results[0].address_components[7].long_name, formattedAddress: data.results[0].formatted_address}))
         //   .then(data => console.log(data.results[0]))
           .catch(err => console.error(err))
       }
