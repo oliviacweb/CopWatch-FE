@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Button, Platform } from 'react-native';
 
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import ReportForm from '../ReportForm/ReportForm'
 import { NavigationContainer } from '@react-navigation/native';
 import { apiKey } from './apiKey.js'
+
 
 
 export default function Home({ navigation }) {
@@ -63,8 +64,8 @@ export default function Home({ navigation }) {
         <View style={styles.home}>
             <Header />
             <View style={styles.reportBtn}>
-                <Button
-                    color='#fff'
+                <Button 
+                    color= {Platform.OS === 'ios' ? '#fff' : null}
                     title="File a Report"
                     onPress={() => handleReportView()}
                 />
@@ -82,10 +83,10 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         height: 55,
         // color: '#fff',
-        backgroundColor: '#0018f9',
-        borderColor: '#FFF',
-        borderStyle: 'solid',
-        borderWidth: 2,
+        backgroundColor: Platform.OS === 'ios'? '#0018f0' : null,
+        borderColor: Platform.OS === 'ios'? '#FFF' : null,
+        borderStyle: Platform.OS === 'ios'? 'solid' : null,
+        borderWidth: Platform.OS === 'ios'? 2 : null,
         display: 'flex',
         justifyContent: 'center',
         // fontSize: 40,
