@@ -25,9 +25,9 @@ export const postIncident = async (report) => {
         body: JSON.stringify(
             {
                 description: report.description,
-                zip_code: report.location,
-                city: report.location,
-                state: report.location,
+                zip_code: report.zip,
+                city: report.city,
+                state: report.state,
                 parties: report.parties,
                 officer_name: report.officerName,
                 badge_number: report.badgeNum,

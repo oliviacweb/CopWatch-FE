@@ -14,11 +14,17 @@ import Constants from 'expo-constants';
 
 
 export default function Report(props) {
+  const { address } = props.route.params
+  // console.log(address)
     const [ parties, updateParties ] = useState('')
     const [ date, updateDate ] = useState('')
      const [isTimePickerVisible, setTimePickVis] = useState(false);
     // const [isTimePickerVisible, setTimePickVis] = useState(false);
     const [ time, updateTime ] = useState('')
+    const [ street, updateStreet ] = useState('')
+    const [ city, updateCity ] = useState('')
+    const [ state, updateState ] = useState('')
+    const [ zip, updateZip ] = useState('')
     const [ location, updateLocation ] = useState('')
     const [ officerName, updateOfficerName ] = useState('')
     const [ badgeNum, updateBadgeNum ] = useState('')
@@ -42,7 +48,10 @@ export default function Report(props) {
             parties,
             date,
             time,
-            location,
+            street,
+            city,
+            state,
+            zip,
             officerName,
             badgeNum,
             description
@@ -128,7 +137,11 @@ const showTimePicker = () => {
     // updates location based off of gps and autofills location input
     const useCurrentLocation = () => {
         if (props.route.params.address !== ' ') {
-            updateLocation(props.route.params.address)
+          updateStreet(address.street)
+          updateCity(address.city)
+          updateState(address.state)
+          updateZip(address.zip)
+          updateLocation(address.formattedAddress)
         }
     }
 
@@ -223,13 +236,49 @@ const showTimePicker = () => {
 
 
 
-        <Text style={styles.label}>Location:</Text>
+        {/* <Text style={styles.label}>Location:</Text>
         <TextInput
           placeholder="Enter Location"
           value={location}
           onChangeText={updateLocation}
           style={styles.input}
+        /> */}
+
+        <Text style={styles.label}>Street:</Text>
+        <TextInput
+          placeholder="Enter Street"
+          value={street}
+          onChangeText={updateStreet}
+          style={styles.input}
         />
+
+        <Text style={styles.label}>City:</Text>
+        <TextInput
+          placeholder="Enter City"
+          value={city}
+          onChangeText={updateCity}
+          style={styles.input}
+        /> 
+
+        <Text style={styles.label}>State:</Text>
+        <TextInput
+          placeholder="Enter State"
+          value={state}
+          onChangeText={updateState}
+          style={styles.input}
+        />
+
+       <Text style={styles.label}>Zip Code:</Text>
+        <TextInput
+          placeholder="Enter Zip Code"
+          value={zip}
+          onChangeText={updateZip}
+          style={styles.input}
+        />
+
+
+
+
         <Button title="Use My Location" onPress={() => useCurrentLocation()} />
         <Text style={styles.label}>Officer Name:</Text>
         <TextInput
