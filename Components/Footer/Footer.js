@@ -2,6 +2,13 @@ import React from 'react'
 import { ScrollView, Text, StyleSheet, Button, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 // import { createStackNavigator } from "@react-navigation/stack";
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { TouchableHighlight } from 'react-native-gesture-handler';
+
+const homeIcon = <Icon name="home" size={60} color="#003366" />;
+const addReportIcon = <Icon name="edit" size={60} color="#003366" />;
+const viewIncidentsIcon = <Icon name="list-alt" size={60} color="#003366" />;
+const twitterIcon = <Icon name="twitter" size={60} color="#003366" />;
 
 // const Stack = createStackNavigator();
 
@@ -12,29 +19,31 @@ export default function Footer({ navigation }) {
     const handleHomeView = () => {
         navigation.navigate("Home")
     }
+    const handleFileReportView = () => {
+        navigation.navigate("Report Form");
+    }
 
-    return(
-        <View style={styles.footer}>
-            <Text></Text>
+    return (
+      <View style={styles.footer}>
+        <TouchableHighlight onPress={() => handleHomeView()}>
+          <View style={styles.button}>
 
-            <View style={styles.button}>
-                <Button 
-                    title="home" 
-                    
-                    onPress={() => handleHomeView()}
-                />
-            </View>
-
-            <View style={styles.button}>
-                <Button 
-                    title="Incidents" 
-                    
-                    onPress={() => handleIncidentsView()}
-                />
-            </View>
-            {/* <Button title="home"></Button> */}
-        </View>
-    )
+            <Text>Home</Text>
+          </View>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={() => handleFileReportView()}>
+          <View style={styles.button}>
+ 
+            <Text>File A Report</Text>
+          </View>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={() => handleIncidentsView()}>
+          <View style={styles.button}>
+            <Text>View Incidents</Text>
+          </View>
+        </TouchableHighlight>
+      </View>
+    );
 }
 
 const styles = StyleSheet.create({
@@ -51,9 +60,16 @@ const styles = StyleSheet.create({
     },
     button: {
         // backgroundColor: 'red',
-        width: '25%',
-        
-       
-
+        width: '100%',
+    },
+    icon: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"  
+    },
+    iconTitle: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
     }
 })
