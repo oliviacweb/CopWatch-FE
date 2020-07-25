@@ -8,7 +8,8 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
-Components/Home/apiAccess.js
+
+Components/Home/apiKey.js
 
 .env
 
