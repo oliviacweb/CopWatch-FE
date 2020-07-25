@@ -62,14 +62,29 @@ const showTimePicker = () => {
  };
 
  const setTime = (time) => {
+   console.log(time, 'full time to convert')
    let fullTime = new Date(time)
    let hour = fullTime.getUTCHours()
    let minute = fullTime.getUTCMinutes()
    let hourMinTime = hour+":"+minute
-   updateTime(hourMinTime)
-
-
+   convertTime(hourMinTime)
+   // updateTime(hourMinTime)
  }
+
+  const convertTime = (time) => {
+    time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+     if (time.length > 1) {
+       time = time.slice (1);
+       time[5] = +time[0] < 12 ? 'AM' : 'PM';
+       time[0] = +time[0] % 12 || 12;
+     }
+     let civTime = time.join('');
+     updateTime(civTime)
+  }
+
+
+
+
 
 
     //date
