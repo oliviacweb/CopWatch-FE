@@ -18,8 +18,7 @@ export default function IncidentCard(props) {
         <View style={styles.card}> 
         {/* <ImageBackground source={incident.image} > */}
             <Text style={styles.details}>Date: {incident.created_date}</Text>
-            <Text style={styles.details}>City: {incident.city}, {incident.state}</Text>
-            <Text style={styles.details}>Zip Code: {incident.zip_code}</Text>
+            <Text style={styles.details}>City: {incident.city}, {incident.state} {incident.zip_code}</Text>
             <Text style={styles.description}>Description: {incident.description}</Text>
             <Button 
               title='Incident Details'
