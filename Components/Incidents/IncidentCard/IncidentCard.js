@@ -7,9 +7,9 @@ export default function IncidentCard({ incident }) {
 
     return (
         <View style={styles.card}> 
-            <Text>Incident Id: {incident.id}</Text>
+            {/* <Text>Incident Id: {incident.id}</Text> */}
             <Text>Description: {incident.description}</Text>
-            {/* <Text>{incident.self.created_date}</Text> */}
+            <Text>Date: {incident.created_date}</Text>
             <Text>City: {incident.city}</Text>
             <Text>State: {incident.state}</Text>
             <Text>Zip: {incident.zip_code}</Text>

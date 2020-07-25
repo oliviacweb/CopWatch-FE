@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { ScrollView, Text } from 'react-native'
+import { ScrollView, TextInput, StyleSheet, Button } from 'react-native'
 import { fetchIncidents } from '../../../apiCalls'
 import IncidentCard from '../IncidentCard/IncidentCard'
 
 export default function IncidentsContainer() {
     const [ incidents, updateIncidents ] = useState([])
-    
+    const [ incidentsToDisplay, updateIncidentsToDisplay ] = useState([])
+    const [ searchInput, updateSearchInput ] = useState('')
 
   // on component mount, get all incidents from the database
   useEffect(() => {
@@ -16,24 +17,88 @@ export default function IncidentsContainer() {
         console.log('data', incidentsData)
         if (incidentsData !== undefined && incidentsData !== false) {
             updateIncidents(incidentsData)
+            updateIncidentsToDisplay(incidentsData)
         }
     }
     getIncidents()
-    
   }, [])
 
     // maps over all incidents and creatre Incident Cards
     const allIncidentCards = () => {
-        console.log('incidents', incidents)
-        if (incidents !== undefined && incidents) {
-            return incidents.map(incident => <IncidentCard incident={incident} key={incident.id}/>)
+        if (incidentsToDisplay !== undefined && incidents) {
+            return incidentsToDisplay.map(incident => <IncidentCard incident={incident} key={incident.id}/>)
 
         }
     }
+
+    // const handleSearch = async (e) => {
+    //     updateSearchInput(e.target.value)
+    //     searchIncidents(e.target.value)
+    // }
+    // useEffect(() => {
+    //   searchIncidents()
+    // },)
+
+    const searchIncidents = () => {
+        const matchingIncidents = incidents.filter(incident => {
+            console.log(incident)
+            let doesInclude = false
+            const keys = Object.keys(incident)
+            console.log(keys)
+            keys.forEach(key => {
+                console.log(typeof incident[key])
+                if (key !== 'id') {
+                    if (incident[key].toLowerCase().includes(searchInput.toLowerCase())) {
+                        doesInclude = true
+                    }
+                }
+            })
+            if (doesInclude) {
+                return incident
+            }
+        })
+        console.log(matchingIncidents)
+        updateIncidentsToDisplay(matchingIncidents)
+    }
+
+    const handleSearch = () => {
+        searchIncidents()
+        clearInput()
+    }
+
+    const handleClear = () => {
+        updateIncidentsToDisplay(incidents)
+        clearInput()
+    }
+
+    const clearInput = () => {
+        updateSearchInput('')
+    }
     
     return (
-        <ScrollView>
+        <ScrollView >
+            <TextInput
+                placeholder="search incidents"
+                value={searchInput}
+                onChangeText={updateSearchInput}
+                style={styles.search}
+        />
+            <Button 
+                title="SEARCH"
+                onPress={handleSearch}
+            />
+            <Button 
+                title="CLEAR RESULTS"
+                onPress={handleClear}
+            />
             {allIncidentCards()}
         </ScrollView>
     )
 }
+
+const styles = StyleSheet.create({
+    search: {
+        backgroundColor: '#fff'
+    }
+
+})
