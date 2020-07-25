@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { View, TextInput, Text, StyleSheet, Button, Platform, ScrollView, Image } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { NavigationContainer } from "@react-navigation/native";
+
 import { postIncident } from '../../apiCalls'
 import * as ImagePicker from 'expo-image-picker'
 // import ImagePicker from 'expo-image-picker'
@@ -22,7 +24,12 @@ export default function Report(props) {
     const handleSubmit = () => {
         const report = createReportObject()
         postIncident(report)
+        handleSubmissionConfirmationView()
     }
+
+    const handleSubmissionConfirmationView = () => {
+      props.navigation.navigate("Submission Confirmation")
+  }
 
     // creates report object from hooks/state
     const createReportObject = () => {

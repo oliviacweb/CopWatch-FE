@@ -16,7 +16,8 @@ export const fetchIncidents = async () => {
 }
 
 export const postIncident = async (report) => {
-    const url = 'https://copwatch-be.herokuapp.com/api/v1/reports/new'
+    // const url = 'https://copwatch-be.herokuapp.com/api/v1/reports/new'
+    const url = 'https://www.school.com'
     fetch(url, {
         method: 'POST',
         headers: {
