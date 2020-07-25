@@ -13,10 +13,10 @@ export default function IncidentDetails(props) {
                 <Text style={styles.text}>City: {incident.city}</Text>
                 <Text style={styles.text}>State: {incident.state}</Text>
                 <Text style={styles.text}>Zip: {incident.zip_code}</Text>
-                <Text style={styles.text}>Parties: {incident.parties}</Text>
+                <Text style={styles.text}>Parties Involved: {incident.parties}</Text>
+                <Text style={styles.text}>Officer Name(s): {incident.officer_name}</Text>
+                <Text style={styles.text}>Badge Number(s): {incident.badge_number}</Text>
                 <Text style={styles.text}>Description: {incident.description}</Text>
-                <Text style={styles.text}>Officer: {incident.officer_name}</Text>
-                <Text style={styles.text}>Badge Number: {incident.badge_number}</Text>
             </View>
             <Footer navigation={navigation}/>
         </View>
@@ -35,5 +35,6 @@ const styles = StyleSheet.create({
     text: {
         color: '#fff',
         fontSize: 20,
+        margin: 5,
     }
 })
