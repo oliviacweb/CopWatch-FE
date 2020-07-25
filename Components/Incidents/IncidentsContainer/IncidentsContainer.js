@@ -3,7 +3,7 @@ import { ScrollView, TextInput, StyleSheet, Button } from 'react-native'
 import { fetchIncidents } from '../../../apiCalls'
 import IncidentCard from '../IncidentCard/IncidentCard'
 
-export default function IncidentsContainer() {
+export default function IncidentsContainer({navigation}) {
     const [ incidents, updateIncidents ] = useState([])
     const [ incidentsToDisplay, updateIncidentsToDisplay ] = useState([])
     const [ searchInput, updateSearchInput ] = useState('')
@@ -13,8 +13,6 @@ export default function IncidentsContainer() {
     async function getIncidents() {
         const incidentsData = await fetchIncidents()
             // .then(response => response.json())
-
-        console.log('data', incidentsData)
         if (incidentsData !== undefined && incidentsData !== false) {
             updateIncidents(incidentsData)
             updateIncidentsToDisplay(incidentsData)
@@ -26,19 +24,11 @@ export default function IncidentsContainer() {
     // maps over all incidents and creatre Incident Cards
     const allIncidentCards = () => {
         if (incidentsToDisplay !== undefined && incidents) {
-            return incidentsToDisplay.map(incident => <IncidentCard incident={incident} key={incident.id}/>)
-
+            return incidentsToDisplay.map(incident => <IncidentCard incident={incident} key={incident.id} navigation={navigation}/>)
         }
     }
 
-    // const handleSearch = async (e) => {
-    //     updateSearchInput(e.target.value)
-    //     searchIncidents(e.target.value)
-    // }
-    // useEffect(() => {
-    //   searchIncidents()
-    // },)
-
+    // searches and updates incidentsToDisplay with matches
     const searchIncidents = () => {
         const matchingIncidents = incidents.filter(incident => {
             console.log(incident)
@@ -57,20 +47,22 @@ export default function IncidentsContainer() {
                 return incident
             }
         })
-        console.log(matchingIncidents)
         updateIncidentsToDisplay(matchingIncidents)
     }
 
+    // helper for search button
     const handleSearch = () => {
         searchIncidents()
         clearInput()
     }
 
+    // helper for clear button
     const handleClear = () => {
         updateIncidentsToDisplay(incidents)
         clearInput()
     }
 
+    // clears input field
     const clearInput = () => {
         updateSearchInput('')
     }

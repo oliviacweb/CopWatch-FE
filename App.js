@@ -7,6 +7,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Home from './Components/Home/Home'
 import ReportForm from './Components/ReportForm/ReportForm'
 import IncidentsContainer from './Components/Incidents/IncidentsContainer/IncidentsContainer'
+import IncidentDetails from './Components/Incidents/IncidentDetails/IncidentDetails'
 import SubmissionConfirmation from './Components/SubmissionConfirmation/SubmissionConfirmation'
 
 const Stack = createStackNavigator();
@@ -15,7 +16,7 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Incidents Container">
+      <Stack.Navigator initialRouteName="Home">
           <Stack.Screen 
             name="Home"
             component={Home}
@@ -31,6 +32,10 @@ export default function App() {
           <Stack.Screen 
             name="Submission Confirmation"
             component={SubmissionConfirmation}
+          />
+          <Stack.Screen
+            name="Incident Details"
+            component={IncidentDetails}
           />
       </Stack.Navigator>
     </NavigationContainer>
