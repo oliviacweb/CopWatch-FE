@@ -3,16 +3,19 @@ import { View, TextInput, Text, StyleSheet, Button, Platform, ScrollView, Image,
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { postIncident } from '../../apiCalls'
 import DatePicker from 'react-native-datepicker';
-import * as ImagePicker from 'expo-image-picker'
+import DateTimePicker from '@react-native-community/datetimepicker';
+import * as ImagePicker from 'expo-image-picker';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 // import ImagePicker from 'expo-image-picker'
-import * as Permissions from 'expo-permissions'
+import * as Permissions from 'expo-permissions';
 import Constants from 'expo-constants';
 
 
 export default function Report(props) {
     const [ parties, updateParties ] = useState('')
     const [ date, updateDate ] = useState('')
-    const [ datePicker, updateDatePicker] = useState(false)
+     const [isTimePickerVisible, setTimePickVis] = useState(false);
+    // const [isTimePickerVisible, setTimePickVis] = useState(false);
     const [ time, updateTime ] = useState('')
     const [ location, updateLocation ] = useState('')
     const [ officerName, updateOfficerName ] = useState('')
@@ -38,6 +41,35 @@ export default function Report(props) {
             description
         })
     }
+
+
+//time
+const showTimePicker = () => {
+   setTimePickVis(true);
+ };
+
+ const hideTimePicker = () => {
+   setTimePickVis(false);
+ };
+
+
+
+ const handleConfirm = (time) => {
+   hideTimePicker();
+   setTime(time)
+
+
+ };
+
+ const setTime = (time) => {
+   let fullTime = new Date(time)
+   let hour = fullTime.getUTCHours()
+   let minute = fullTime.getUTCMinutes()
+   let hourMinTime = hour+":"+minute
+   updateTime(hourMinTime)
+
+
+ }
 
 
     //date
@@ -130,7 +162,6 @@ export default function Report(props) {
         />
 
         <Text style={styles.label}>Date:</Text>
-
           <DatePicker
           style={styles.input}
           date={date}
@@ -154,16 +185,22 @@ export default function Report(props) {
                     }
                   }}
           />
+      <View>
+      <Text style={styles.label}>Time: {time}</Text>
+     <Button title="Select Time" onPress={showTimePicker} />
+     <DateTimePickerModal
+       isVisible={isTimePickerVisible}
+       mode="time"
+       time={time}
+       value="time"
+       onConfirm={handleConfirm}
+       onCancel={hideTimePicker}
+     />
+   </View>
 
-        
 
-        <Text style={styles.label}>Time:</Text>
-        <TextInput
-          placeholder="Enter Time"
-            value={time}
-          onChangeText={updateTime}
-          style={styles.input}
-        />
+
+
         <Text style={styles.label}>Location:</Text>
         <TextInput
           placeholder="Enter Location"
