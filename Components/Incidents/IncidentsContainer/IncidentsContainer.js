@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { ScrollView, Text } from 'react-native'
+import { ScrollView, Text, View } from 'react-native'
 import { fetchIncidents } from '../../../apiCalls'
 import IncidentCard from '../IncidentCard/IncidentCard'
+import Footer from '../../Footer/Footer'
 
-export default function IncidentsContainer() {
+export default function IncidentsContainer({ navigation }) {
     const [ incidents, updateIncidents ] = useState([])
     
 
@@ -32,8 +33,11 @@ export default function IncidentsContainer() {
     }
     
     return (
-        <ScrollView>
-            {allIncidentCards()}
-        </ScrollView>
+        <View>
+            <ScrollView>
+                {allIncidentCards()}
+            </ScrollView>
+            <Footer navigation={navigation}/>
+        </View>
     )
 }
