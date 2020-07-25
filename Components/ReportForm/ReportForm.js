@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { View, TextInput, Text, StyleSheet, Button, Platform, ScrollView, Image } from 'react-native'
+import { View, TextInput, Text, StyleSheet, Button, Platform, ScrollView, Image, TouchableOpacity } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { postIncident } from '../../apiCalls'
+import DatePicker from 'react-native-datepicker';
 import * as ImagePicker from 'expo-image-picker'
 // import ImagePicker from 'expo-image-picker'
 import * as Permissions from 'expo-permissions'
@@ -11,6 +12,7 @@ import Constants from 'expo-constants';
 export default function Report(props) {
     const [ parties, updateParties ] = useState('')
     const [ date, updateDate ] = useState('')
+    const [ datePicker, updateDatePicker] = useState(false)
     const [ time, updateTime ] = useState('')
     const [ location, updateLocation ] = useState('')
     const [ officerName, updateOfficerName ] = useState('')
@@ -37,13 +39,45 @@ export default function Report(props) {
         })
     }
 
+
+    //date
+// const renderPicker = () => {
+//   console.log('isthis runnningggg')
+// return (
+// <DatePicker
+// style={{ width: 200 }}
+// date={date}
+// mode="date"
+// placeholder="Select date"
+// format="YYYY-MM-DD"
+// minDate="2016-05-01"
+// maxDate="2020-12-12"
+// confirmBtnText="OK"
+// cancelBtnText="Cancel"
+// onDateChange={updateDate}
+// customStyles={{
+//           dateIcon: {
+//             position: 'absolute',
+//             left: 0,
+//             top: 4,
+//             marginLeft: 0
+//           },
+//           dateInput: {
+//             marginLeft: 36
+//           }
+//         }}
+// />
+// );
+//
+// }
+
     // updates location based off of gps and autofills location input
     const useCurrentLocation = () => {
         if (props.route.params.address !== ' ') {
             updateLocation(props.route.params.address)
         }
     }
-    
+
     // image
     const pickImage = async () => {
       try {
@@ -94,13 +128,35 @@ export default function Report(props) {
           onChangeText={updateParties}
           style={styles.input}
         />
+
         <Text style={styles.label}>Date:</Text>
-        <TextInput
-          placeholder="Enter Date"
-          value={date}
-          onChangeText={updateDate}
+
+          <DatePicker
           style={styles.input}
-        />
+          date={date}
+          mode="date"
+          placeholder="Select date"
+          format="YYYY-MM-DD"
+          minDate="2016-05-01"
+          maxDate={new Date}
+          confirmBtnText="OK"
+          cancelBtnText="Cancel"
+          onDateChange={updateDate}
+          customStyles={{
+                    dateIcon: {
+                      position: 'absolute',
+                      left: 0,
+                      top: 4,
+                      marginLeft: 0
+                    },
+                    dateInput: {
+                      marginLeft: 36
+                    }
+                  }}
+          />
+
+        
+
         <Text style={styles.label}>Time:</Text>
         <TextInput
           placeholder="Enter Time"
@@ -140,12 +196,12 @@ export default function Report(props) {
           multiline={true}
         />
 
-        <View> 
+        <View>
         <Button title="Add an Image" onPress={pickImage} />
         {/* <Image source={{image}} /> */}
         {image !== '' && <Image source={{uri: image}} style={{ width: 150, height: 150 }} />}
         </View>
-     
+
           <View style={styles.submitButton}>
             <Button
               color={Platform.OS === "ios" ? "#fff" : null}
