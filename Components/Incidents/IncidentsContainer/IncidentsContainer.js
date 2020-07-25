@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { ScrollView, TextInput, StyleSheet, Button } from 'react-native'
 import { fetchIncidents } from '../../../apiCalls'
 import IncidentCard from '../IncidentCard/IncidentCard'
+import Footer from '../../Footer/Footer'
 
-export default function IncidentsContainer({navigation}) {
+export default function IncidentsContainer({ navigation }) {
     const [ incidents, updateIncidents ] = useState([])
     const [ incidentsToDisplay, updateIncidentsToDisplay ] = useState([])
     const [ searchInput, updateSearchInput ] = useState('')
