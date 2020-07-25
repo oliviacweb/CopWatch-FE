@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, Text, StyleSheet, Button, View } from 'react-native'
+import { ScrollView, Text, StyleSheet, Button, View, Div } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 // import { createStackNavigator } from "@react-navigation/stack";
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -26,10 +26,10 @@ export default function Footer({ navigation }) {
     return (
       <View style={styles.footer}>
         <TouchableHighlight onPress={() => handleHomeView()}>
-          <View style={styles.button}>
-            {homeIcon}
-            <Text>Home</Text>
-          </View>
+            <View style={styles.button}>
+                {homeIcon}
+                <Text>Home</Text>
+            </View>
         </TouchableHighlight>
         <TouchableHighlight onPress={() => handleFileReportView()}>
           <View style={styles.button}>
@@ -72,5 +72,5 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center"
-    }
+    },
 })
