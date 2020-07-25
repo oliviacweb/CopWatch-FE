@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ScrollView, TextInput, StyleSheet, Button } from 'react-native'
+import { ScrollView, TextInput, StyleSheet, Button, View, Text } from 'react-native'
 import { fetchIncidents } from '../../../apiCalls'
 import IncidentCard from '../IncidentCard/IncidentCard'
 
@@ -68,29 +68,82 @@ export default function IncidentsContainer({ navigation }) {
     }
     
     return (
-        <ScrollView >
-            <TextInput
-                placeholder="search incidents"
-                value={searchInput}
-                onChangeText={updateSearchInput}
-                style={styles.search}
-        />
-            <Button 
-                title="SEARCH"
-                onPress={handleSearch}
+        <View style={styles.container}>
+            <ScrollView >
+                <Text style={styles.searchTitle}>Search Incidents</Text>
+                <TextInput
+                    placeholder="search incidents"
+                    value={searchInput}
+                    onChangeText={updateSearchInput}
+                    style={styles.search}
             />
-            <Button 
-                title="CLEAR RESULTS"
-                onPress={handleClear}
-            />
-            {allIncidentCards()}
-        </ScrollView>
+            <View style={styles.searchButton}>
+                <Button 
+                    color="#fff"
+                    title="SEARCH"
+                    onPress={handleSearch}
+                />
+            </View>
+            <View style={styles.clearSearchButton}>
+                <Button 
+                    color = "#fff"
+                    title="CLEAR RESULTS"
+                    onPress={handleClear}
+                />
+            </View>
+                {allIncidentCards()}
+            </ScrollView>
+            <Footer navigation={navigation}/>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
+    searchTitle: {
+        fontSize: 30,
+        color: "#fff",
+        flex: 1,
+        textAlign: 'center',
+        margin: 15,
+    },
     search: {
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        height: 40,
+        width: '90%',
+        marginLeft: '5%',
+        flex: 1,
+        justifyContent: 'center',
+        paddingLeft: 10,
+    },
+    container: {
+        backgroundColor: "#003366",
+    },
+    searchButton: {
+        width: "90%",
+        marginLeft: 18,
+        marginTop: 10,
+        borderRadius: 30,
+        height: 55,
+        backgroundColor: Platform.OS === "ios" ? "#0018f0" : null,
+        borderColor: Platform.OS === "ios" ? "#FFF" : null,
+        borderStyle: Platform.OS === "ios" ? "solid" : null,
+        borderWidth: Platform.OS === "ios" ? 2 : null,
+        flex: 1,
+        justifyContent: "center",   
+    },
+    clearSearchButton: {
+        width: "90%",
+        paddingLeft: 5,
+        marginLeft: 18,
+        marginTop: 10,
+        borderRadius: 30,
+        height: 55,
+        backgroundColor: Platform.OS === "ios" ? "red" : null,
+        borderColor: Platform.OS === "ios" ? "#FFF" : null,
+        borderStyle: Platform.OS === "ios" ? "solid" : null,
+        borderWidth: Platform.OS === "ios" ? 2 : null,
+        display: "flex",
+        justifyContent: "center",   
     }
 
 })

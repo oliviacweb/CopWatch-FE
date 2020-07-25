@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { View, TextInput, Text, StyleSheet, Button, Platform, ScrollView, Image } from 'react-native'
+import { View, TextInput, Text, StyleSheet, Button, Platform, ScrollView, Image, TouchableOpacity } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { NavigationContainer } from "@react-navigation/native";
 
 import { postIncident } from '../../apiCalls'
-import * as ImagePicker from 'expo-image-picker'
+import DatePicker from 'react-native-datepicker';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import * as ImagePicker from 'expo-image-picker';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 // import ImagePicker from 'expo-image-picker'
-import * as Permissions from 'expo-permissions'
+import * as Permissions from 'expo-permissions';
 import Constants from 'expo-constants';
 
 
@@ -15,6 +18,8 @@ export default function Report(props) {
   // console.log(address)
     const [ parties, updateParties ] = useState('')
     const [ date, updateDate ] = useState('')
+     const [isTimePickerVisible, setTimePickVis] = useState(false);
+    // const [isTimePickerVisible, setTimePickVis] = useState(false);
     const [ time, updateTime ] = useState('')
     const [ street, updateStreet ] = useState('')
     const [ city, updateCity ] = useState('')
@@ -53,6 +58,82 @@ export default function Report(props) {
         })
     }
 
+
+//time
+const showTimePicker = () => {
+   setTimePickVis(true);
+ };
+
+ const hideTimePicker = () => {
+   setTimePickVis(false);
+ };
+
+
+
+ const handleConfirm = (time) => {
+   hideTimePicker();
+   setTime(time)
+
+
+ };
+
+ const setTime = (time) => {
+   console.log(time, 'full time to convert')
+   let fullTime = new Date(time)
+   let hour = fullTime.getUTCHours()
+   let minute = fullTime.getUTCMinutes()
+   let hourMinTime = hour+":"+minute
+   convertTime(hourMinTime)
+   // updateTime(hourMinTime)
+ }
+
+  const convertTime = (time) => {
+    time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+     if (time.length > 1) {
+       time = time.slice (1);
+       time[5] = +time[0] < 12 ? 'AM' : 'PM';
+       time[0] = +time[0] % 12 || 12;
+     }
+     let civTime = time.join('');
+     updateTime(civTime)
+  }
+
+
+
+
+
+
+    //date
+// const renderPicker = () => {
+//   console.log('isthis runnningggg')
+// return (
+// <DatePicker
+// style={{ width: 200 }}
+// date={date}
+// mode="date"
+// placeholder="Select date"
+// format="YYYY-MM-DD"
+// minDate="2016-05-01"
+// maxDate="2020-12-12"
+// confirmBtnText="OK"
+// cancelBtnText="Cancel"
+// onDateChange={updateDate}
+// customStyles={{
+//           dateIcon: {
+//             position: 'absolute',
+//             left: 0,
+//             top: 4,
+//             marginLeft: 0
+//           },
+//           dateInput: {
+//             marginLeft: 36
+//           }
+//         }}
+// />
+// );
+//
+// }
+
     // updates location based off of gps and autofills location input
     const useCurrentLocation = () => {
         if (props.route.params.address !== ' ') {
@@ -63,7 +144,7 @@ export default function Report(props) {
           updateLocation(address.formattedAddress)
         }
     }
-    
+
     // image
     const pickImage = async () => {
       try {
@@ -114,20 +195,47 @@ export default function Report(props) {
           onChangeText={updateParties}
           style={styles.input}
         />
+
         <Text style={styles.label}>Date:</Text>
-        <TextInput
-          placeholder="Enter Date"
-          value={date}
-          onChangeText={updateDate}
+          <DatePicker
           style={styles.input}
-        />
-        <Text style={styles.label}>Time:</Text>
-        <TextInput
-          placeholder="Enter Time"
-            value={time}
-          onChangeText={updateTime}
-          style={styles.input}
-        />
+          date={date}
+          mode="date"
+          placeholder="Select date"
+          format="YYYY-MM-DD"
+          minDate="2016-05-01"
+          maxDate={new Date}
+          confirmBtnText="OK"
+          cancelBtnText="Cancel"
+          onDateChange={updateDate}
+          customStyles={{
+                    dateIcon: {
+                      position: 'absolute',
+                      left: 0,
+                      top: 4,
+                      marginLeft: 0
+                    },
+                    dateInput: {
+                      marginLeft: 36
+                    }
+                  }}
+          />
+      <View>
+      <Text style={styles.label}>Time: {time}</Text>
+     <Button title="Select Time" onPress={showTimePicker} />
+     <DateTimePickerModal
+       isVisible={isTimePickerVisible}
+       mode="time"
+       time={time}
+       value="time"
+       onConfirm={handleConfirm}
+       onCancel={hideTimePicker}
+     />
+   </View>
+
+
+
+
         {/* <Text style={styles.label}>Location:</Text>
         <TextInput
           placeholder="Enter Location"
@@ -196,12 +304,12 @@ export default function Report(props) {
           multiline={true}
         />
 
-        <View> 
+        <View>
         <Button title="Add an Image" onPress={pickImage} />
         {/* <Image source={{image}} /> */}
         {image !== '' && <Image source={{uri: image}} style={{ width: 150, height: 150 }} />}
         </View>
-     
+
           <View style={styles.submitButton}>
             <Button
               color={Platform.OS === "ios" ? "#fff" : null}
