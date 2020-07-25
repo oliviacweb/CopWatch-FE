@@ -3,6 +3,7 @@ import { View, TextInput, Text, StyleSheet, Button, Platform, ScrollView, Image 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { postIncident } from '../../apiCalls'
 import * as ImagePicker from 'expo-image-picker'
+// import ImagePicker from 'expo-image-picker'
 import * as Permissions from 'expo-permissions'
 import Constants from 'expo-constants';
 
