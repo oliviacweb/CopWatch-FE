@@ -14,7 +14,7 @@ import Constants from 'expo-constants';
 
 
 export default function Report(props) {
-  const { address } = props.route.params
+  // const { address } = props.route.params
   // console.log(address)
     const [ parties, updateParties ] = useState('')
     const [ date, updateDate ] = useState('')
@@ -54,7 +54,8 @@ export default function Report(props) {
             zip,
             officerName,
             badgeNum,
-            description
+            description,
+            image
         })
     }
 
@@ -136,12 +137,12 @@ const showTimePicker = () => {
 
     // updates location based off of gps and autofills location input
     const useCurrentLocation = () => {
-        if (props.route.params.address !== ' ') {
-          updateStreet(address.street)
-          updateCity(address.city)
-          updateState(address.state)
-          updateZip(address.zip)
-          updateLocation(address.formattedAddress)
+        if (props.route.params.address !== undefined) {
+          updateStreet(props.route.params.address.street)
+          updateCity(props.route.params.address.city)  
+          updateState(props.route.params.address.state)
+          updateZip(props.route.params.address.zip)
+          updateLocation(props.route.params.address.formattedAddress)
         }
     }
 
@@ -161,7 +162,6 @@ const showTimePicker = () => {
         } catch (error) {
         console.log(error);
       }
-      console.log('image', image)
     }
 
 
