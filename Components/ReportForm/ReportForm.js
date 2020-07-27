@@ -80,12 +80,14 @@ const showTimePicker = () => {
 
  const setTime = (time) => {
    console.log(time, 'full time to convert')
-   let fullTime = new Date(time)
-   let hour = fullTime.getUTCHours()
-   let minute = fullTime.getUTCMinutes()
-   let hourMinTime = hour+":"+minute
-   convertTime(hourMinTime)
+   let newTime = time.toLocaleTimeString('en-US', { hour12: false,
+                                             hour: "numeric",
+                                             minute: "numeric"})
+   convertTime(newTime)
+   // updateTime(newTime)
+
    // updateTime(hourMinTime)
+   console.log('the time put in')
  }
 
   const convertTime = (time) => {
@@ -98,6 +100,9 @@ const showTimePicker = () => {
      let civTime = time.join('');
      updateTime(civTime)
   }
+
+
+
 
 
 
@@ -140,7 +145,7 @@ const showTimePicker = () => {
       console.log(props.route.params)
         if (props.route.params.address !== undefined) {
           updateStreet(props.route.params.address.street)
-          updateCity(props.route.params.address.city)  
+          updateCity(props.route.params.address.city)
           updateState(props.route.params.address.state)
           updateZip(props.route.params.address.zip)
           updateLocation(props.route.params.address.formattedAddress)
@@ -228,6 +233,7 @@ const showTimePicker = () => {
        isVisible={isTimePickerVisible}
        mode="time"
        time={time}
+       locale= "en_US"
        value="time"
        onConfirm={handleConfirm}
        onCancel={hideTimePicker}
@@ -259,7 +265,7 @@ const showTimePicker = () => {
           value={city}
           onChangeText={updateCity}
           style={styles.input}
-        /> 
+        />
 
         <Text style={styles.label}>State:</Text>
         <TextInput
