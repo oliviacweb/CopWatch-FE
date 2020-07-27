@@ -9,6 +9,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 // import ImagePicker from 'expo-image-picker'
+import * as Location from 'expo-location'
 import * as Permissions from 'expo-permissions';
 import Constants from 'expo-constants';
 
