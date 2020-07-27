@@ -66,10 +66,11 @@ export default function Home({ navigation }) {
     return (
         <View style={styles.home}>
             <Header />
+              <Text style={styles.missionStatement}>CopWatch is dedicated to providing civilians with a fast and easy way to document incidents of police misconduct. Simply click the 'Log An Incident' button below to get started. </Text>
             <View style={styles.reportBtn}>
-                <Button 
+                <Button
                     color= {Platform.OS === 'ios' ? '#fff' : null}
-                    title="File a Report"
+                    title="Log An Incident"
                     onPress={() => handleReportView()}
                 />
             </View>
@@ -96,7 +97,16 @@ const styles = StyleSheet.create({
 
         // height: 100
     },
+    missionStatement: {
+      marginBottom: 170,
+      fontSize: 17,
+      // fontStyle: 'bold',
+      marginLeft: '10%',
+      marginRight: '6%',
+      justifyContent: 'center',
+      color: 'white'
 
+    },
     home: {
         height: '100%',
         backgroundColor: '#003366',
