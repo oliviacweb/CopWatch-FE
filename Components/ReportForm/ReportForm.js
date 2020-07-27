@@ -70,13 +70,9 @@ const showTimePicker = () => {
    setTimePickVis(false);
  };
 
-
-
  const handleConfirm = (time) => {
    hideTimePicker();
    setTime(time)
-
-
  };
 
  const setTime = (time) => {
@@ -86,8 +82,8 @@ const showTimePicker = () => {
    let minute = fullTime.getUTCMinutes()
    let hourMinTime = hour+":"+minute
    convertTime(hourMinTime)
-   // updateTime(hourMinTime)
- }
+   updateTime(hourMinTime)
+ };
 
   const convertTime = (time) => {
     time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
@@ -98,7 +94,7 @@ const showTimePicker = () => {
      }
      let civTime = time.join('');
      updateTime(civTime)
-  }
+  };
 
 
 
@@ -175,8 +171,21 @@ const showTimePicker = () => {
       }
     }
 
+    const getLocationAsync = async () => {
+      let { status } = await Permissions.askAsync(Permissions.LOCATION);
+      if (status !== 'granted') {
+              alert('Permission to access location was denied');
+      }
+      let location = await Location.getCurrentPositionAsync({accuracy:Location.Accuracy.Highest});
+      console.log(location)
+      const { latitude, longitude } = location.coords
+      this.getGeocodeAsync({latitude, longitude})
+
+}
+
     useEffect(() => {
       getPermissionAsync()
+      getLocationAsync()
     , []})
 
 
@@ -199,7 +208,7 @@ const showTimePicker = () => {
 
         <Text style={styles.label}>Date:</Text>
           <DatePicker
-          style={styles.input}
+          style={styles.inputDate}
           date={date}
           mode="date"
           placeholder="Select date"
@@ -343,6 +352,15 @@ const styles = StyleSheet.create({
     margin: 10,
     fontSize: 15,
     height: 33,
+    backgroundColor: "#fff",
+    paddingLeft: 5,
+    width: "90%",
+  },
+
+  inputDate: {
+    margin: 10,
+    fontSize: 15,
+    height: 40,
     backgroundColor: "#fff",
     paddingLeft: 5,
     width: "90%",

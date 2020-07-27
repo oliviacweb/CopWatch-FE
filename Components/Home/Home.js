@@ -6,6 +6,8 @@ import Footer from '../Footer/Footer'
 import ReportForm from '../ReportForm/ReportForm'
 import { NavigationContainer } from '@react-navigation/native';
 import { apiKey } from './apiKey.js'
+import * as Location from "expo-location";
+import * as Permissions from "expo-permissions";
 
 
 
@@ -13,6 +15,7 @@ export default function Home({ navigation }) {
     // const [ address, updateAddress ] = useState(' ')
     const [ address, updateAddress ] = useState({street: '', city: '', state: '', zip: '', formattedAddress: ''})
     const [ coordinates, updateCoordinates ] = useState(' ')
+ 
 
     // routing
     const handleReportView = () => {
@@ -36,6 +39,20 @@ export default function Home({ navigation }) {
         );
       };
 
+    const getLocationAsync = async () => {
+      let { status } = await Permissions.askAsync(Permissions.LOCATION);
+      if (status !== 'granted') {
+              alert('Permission to access location was denied');
+      }
+      let location = await Location.getCurrentPositionAsync({accuracy:Location.Accuracy.Highest});
+      console.log(location)
+      const { latitude, longitude } = location.coords
+      this.getGeocodeAsync({latitude, longitude})
+      if (location !== '{}') {
+          updateCoordinates(location = {latitude, longitude})
+      }
+    }
+
     //   find address
     const getAddress = async () => {
         const locationArray = coordinates.split(':')
@@ -55,6 +72,7 @@ export default function Home({ navigation }) {
     //   get coordinates, address on mount
     useEffect(() => {
         findCoordinates()
+        // getLocationAsync()
     }, [])
 
     useEffect(() => {
