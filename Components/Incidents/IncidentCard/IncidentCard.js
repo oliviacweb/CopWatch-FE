@@ -1,11 +1,10 @@
 import React from 'react'
-import { View, Text, StyleSheet, Button, ImageBackground } from 'react-native'
+import { View, Text, StyleSheet, Button, Image } from 'react-native'
 // import IncidxentsContainer from '../IncidentsContainer/IncidentsContainer'
 
 
 export default function IncidentCard(props) {
   const { incident } = props
-  // const { navigation } = props
   
       const handleDetailsView = () => {
         props.navigation.navigate("Incident Details", {
@@ -13,13 +12,14 @@ export default function IncidentCard(props) {
         })
     }
     
-
+    console.log(incident)
     return (
         <View style={styles.card}> 
         {/* <ImageBackground source={incident.image} > */}
             <Text style={styles.details}>Date: {incident.created_date}</Text>
             <Text style={styles.details}>City: {incident.city}, {incident.state} {incident.zip_code}</Text>
             <Text style={styles.description}>Description: {incident.description}</Text>
+            <Image source={incident.image} />
             <Button 
               title='Incident Details'
               onPress={handleDetailsView}

@@ -69,13 +69,9 @@ const showTimePicker = () => {
    setTimePickVis(false);
  };
 
-
-
  const handleConfirm = (time) => {
    hideTimePicker();
    setTime(time)
-
-
  };
 
  const setTime = (time) => {
@@ -85,7 +81,7 @@ const showTimePicker = () => {
    let minute = fullTime.getUTCMinutes()
    let hourMinTime = hour+":"+minute
    convertTime(hourMinTime)
-   // updateTime(hourMinTime)
+   updateTime(hourMinTime)
  }
 
   const convertTime = (time) => {
@@ -233,17 +229,6 @@ const showTimePicker = () => {
      />
    </View>
 
-
-
-
-        {/* <Text style={styles.label}>Location:</Text>
-        <TextInput
-          placeholder="Enter Location"
-          value={location}
-          onChangeText={updateLocation}
-          style={styles.input}
-        /> */}
-
         <Text style={styles.label}>Street:</Text>
         <TextInput
           placeholder="Enter Street"
@@ -276,10 +261,8 @@ const showTimePicker = () => {
           style={styles.input}
         />
 
-
-
-
         <Button title="Use My Location" onPress={() => useCurrentLocation()} />
+
         <Text style={styles.label}>Officer Name:</Text>
         <TextInput
           placeholder="Enter Officer Name(s)"
@@ -287,6 +270,7 @@ const showTimePicker = () => {
           onChangeText={updateOfficerName}
           style={styles.input}
         />
+
         <Text style={styles.label}>Officer Badge Number:</Text>
         <TextInput
           placeholder="Enter Officer Badge Number(s)"
@@ -306,7 +290,6 @@ const showTimePicker = () => {
 
         <View>
         <Button title="Add an Image" onPress={pickImage} />
-        {/* <Image source={{image}} /> */}
         {image !== '' && <Image source={{uri: image}} style={{ width: 150, height: 150 }} />}
         </View>
 
@@ -371,7 +354,6 @@ const styles = StyleSheet.create({
   },
 
   submitButton: {
-    // marginTop: 5,
     width: "90%",
     paddingLeft: 5,
     margin: 10,

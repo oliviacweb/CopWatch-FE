@@ -33,10 +33,8 @@ export default function IncidentsContainer({ navigation }) {
     // searches and updates incidentsToDisplay with matches
     const searchIncidents = () => {
         const matchingIncidents = incidents.filter(incident => {
-            console.log(incident)
             let doesInclude = false
             const keys = Object.keys(incident)
-            console.log(keys)
             keys.forEach(key => {
                 console.log(typeof incident[key])
                 if (key !== 'id') {

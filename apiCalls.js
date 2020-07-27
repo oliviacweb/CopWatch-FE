@@ -16,7 +16,7 @@ export const fetchIncidents = async () => {
 }
 
 export const postIncident = async (report) => {
-    postImage(report)
+    console.log(report.image)
     const url = 'https://copwatch-be.herokuapp.com/api/v1/reports/new'
     fetch(url, {
         method: 'POST',
@@ -32,7 +32,8 @@ export const postIncident = async (report) => {
                 parties: report.parties,
                 officer_name: report.officerName,
                 badge_number: report.badgeNum,
-                created_date: report.date
+                created_date: report.date,
+                image: report.image
             }
         )
       })
@@ -60,3 +61,4 @@ const postImage = (report) => {
         .then(response => console.log(response))
         .catch(err => console.error(err))
 }
+
