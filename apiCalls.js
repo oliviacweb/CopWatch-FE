@@ -41,7 +41,22 @@ export const postIncident = async (report) => {
 }
 
 const postImage = (report) => {
-    // const url = 'https://copwatch-be.herokuapp.com/api/v1/upload'
     console.log(report.image)
-
+    // const corsAnywhere = `https://cors-anywhere.herokuapp.com/`;
+    // const url = 'https://copwatch-be.herokuapp.com/api/v1/upload'
+    const url = `http://localhost:5000/api/v1/upload`
+    fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(
+            {
+                image: report.image
+            }
+        )
+      })
+        // .then(response => response.json())
+        .then(response => console.log(response))
+        .catch(err => console.error(err))
 }

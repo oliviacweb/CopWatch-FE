@@ -137,7 +137,6 @@ const showTimePicker = () => {
 
     // updates location based off of gps and autofills location input
     const useCurrentLocation = () => {
-      console.log(props.route.params)
         if (props.route.params.address !== undefined) {
           updateStreet(props.route.params.address.street)
           updateCity(props.route.params.address.city)  
