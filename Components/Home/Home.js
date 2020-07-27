@@ -73,7 +73,7 @@ export default function Home({ navigation }) {
                     onPress={() => handleReportView()}
                 />
             </View>
-            <Footer navigation={navigation}/>
+            <Footer navigation={navigation} address={address}/>
         </View>
     )
 }

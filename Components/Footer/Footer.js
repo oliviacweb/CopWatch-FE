@@ -8,7 +8,7 @@ import { TouchableHighlight } from 'react-native-gesture-handler';
 
 // const Stack = createStackNavigator();
 
-export default function Footer({ navigation }) {
+export default function Footer({ navigation, address }) {
     const homeIcon = <Icon name="home" size={60} color="#003366" />;
     const addReportIcon = <Icon style={styles.iconFileReport} name="edit" size={60} color="#003366" />;
     const viewIncidentsIcon = <Icon style={styles.iconViewReports} name="list-alt" size={60} color="#003366" />;
@@ -20,7 +20,9 @@ export default function Footer({ navigation }) {
         navigation.navigate("Home")
     }
     const handleFileReportView = () => {
-        navigation.navigate("Report Form");
+        navigation.navigate("Report Form", {
+          address
+        });
     }
 
     return (
