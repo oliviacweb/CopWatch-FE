@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ScrollView, TextInput, StyleSheet, Button, View, Text } from 'react-native'
+import { ScrollView, TextInput, StyleSheet, Button, View, Text, Platform } from 'react-native'
 import { fetchIncidents } from '../../../apiCalls'
 import IncidentCard from '../IncidentCard/IncidentCard'
 
@@ -69,7 +69,7 @@ export default function IncidentsContainer({ navigation }) {
     
     return (
         <View style={styles.container}>
-            <ScrollView >
+            <ScrollView style={styles.incidents}>
                 <Text style={styles.searchTitle}>Search Incidents</Text>
                 <TextInput
                     placeholder="search incidents"
@@ -117,6 +117,9 @@ const styles = StyleSheet.create({
     },
     container: {
         backgroundColor: "#003366",
+    },
+    incidents: {
+        height: '100%'
     },
     searchButton: {
         width: "90%",
