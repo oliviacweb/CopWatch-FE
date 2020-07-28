@@ -40,6 +40,8 @@ export default function Home({ navigation }) {
 
     //   find address
     const getAddress = async () => {
+      console.log('some bullshit', coordinates)
+      if(coordinates !== '') {
         const locationArray = coordinates.split(':')
 
         const long =
@@ -58,6 +60,7 @@ export default function Home({ navigation }) {
           .then(data => updateAddress({street: `${data.results[0].address_components[0].long_name} ${data.results[0].address_components[1].long_name}`, city: data.results[0].address_components[3].long_name, state: data.results[0].address_components[5].long_name, zip: data.results[0].address_components[7].long_name, formattedAddress: data.results[0].formatted_address}))
           .catch(err => console.error(err))
       }
+    }
 
       // refresh or update???
     //   get coordinates, address on mount
