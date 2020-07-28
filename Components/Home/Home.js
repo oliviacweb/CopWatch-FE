@@ -14,8 +14,8 @@ import * as Permissions from "expo-permissions";
 export default function Home({ navigation }) {
     // const [ address, updateAddress ] = useState(' ')
     const [ address, updateAddress ] = useState({street: '', city: '', state: '', zip: '', formattedAddress: ''})
-    const [ coordinates, updateCoordinates ] = useState(' ')
- 
+    const [ coordinates, updateCoordinates ] = useState('')
+
 
     // routing
     const handleReportView = () => {
@@ -39,25 +39,19 @@ export default function Home({ navigation }) {
         );
       };
 
-    const getLocationAsync = async () => {
-      let { status } = await Permissions.askAsync(Permissions.LOCATION);
-      if (status !== 'granted') {
-              alert('Permission to access location was denied');
-      }
-      let location = await Location.getCurrentPositionAsync({accuracy:Location.Accuracy.Highest});
-      console.log(location)
-      const { latitude, longitude } = location.coords
-      this.getGeocodeAsync({latitude, longitude})
-      if (location !== '{}') {
-          updateCoordinates(location = {latitude, longitude})
-      }
-    }
 
     //   find address
     const getAddress = async () => {
         const locationArray = coordinates.split(':')
-        const long = locationArray[6].split('').splice(0, 8).join('')
-        const lat = locationArray[8].split('').splice(0, 8).join('')
+
+        const long =
+          Platform.OS === "ios"
+            ? locationArray[6].split("").splice(0, 14).join("")
+            : locationArray[6].split("").splice(0, 8).join("");
+        const lat =
+          Platform.OS === "ios"
+            ? locationArray[4].split("").splice(0, 12).join("")
+            : locationArray[8].split("").splice(0, 8).join("");
         const latLong = `${lat},${long}`
         const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latLong}&key=${apiKey}`
         // move to api calls?
@@ -72,8 +66,9 @@ export default function Home({ navigation }) {
     //   get coordinates, address on mount
     useEffect(() => {
         findCoordinates()
-        // getLocationAsync()
     }, [])
+
+
 
     useEffect(() => {
         if (coordinates !== ' ') {
