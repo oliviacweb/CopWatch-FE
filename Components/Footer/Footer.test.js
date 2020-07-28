@@ -1,5 +1,6 @@
 import React from 'react'
 import Footer from './Footer'
+jest.mock('react-native-vector-icons/FontAwesome')
 
 import { render, fireEvent, waitFor } from "react-native-testing-library"
 
@@ -7,10 +8,10 @@ import { render, fireEvent, waitFor } from "react-native-testing-library"
 // test for clicking/routing?
 describe('Footer', () => {
     it('', async () => {
-        // const { getByText } = render(<IncidentCard />)
+        const { getByText } = render(<Footer />)
 
-        // const title = await waitFor(() => getByText(""))
+        const logIncident = await waitFor(() => getByText("Log An Incident"))
 
-        expect(true).toBeTruthy()
-    })   
+        expect(logIncident).toBeTruthy()
+    })
 })
