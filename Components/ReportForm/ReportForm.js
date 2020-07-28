@@ -15,12 +15,9 @@ import Constants from 'expo-constants';
 
 
 export default function Report(props) {
-  // const { address } = props.route.params
-  // console.log(address)
     const [ parties, updateParties ] = useState('')
     const [ date, updateDate ] = useState('')
-     const [isTimePickerVisible, setTimePickVis] = useState(false);
-    // const [isTimePickerVisible, setTimePickVis] = useState(false);
+    const [isTimePickerVisible, setTimePickVis] = useState(false);
     const [ time, updateTime ] = useState('')
     const [ street, updateStreet ] = useState('')
     const [ city, updateCity ] = useState('')
@@ -76,15 +73,10 @@ const showTimePicker = () => {
  };
 
  const setTime = (time) => {
-   console.log(time, 'full time to convert')
    let newTime = time.toLocaleTimeString('en-US', { hour12: false,
                                              hour: "numeric",
                                              minute: "numeric"})
    convertTime(newTime)
-   // updateTime(newTime)
-
-   // updateTime(hourMinTime)
-   console.log('the time put in')
  }
 
 
@@ -99,39 +91,6 @@ const showTimePicker = () => {
      updateTime(civTime)
   };
 
-
-
-
-    //date
-// const renderPicker = () => {
-//   console.log('isthis runnningggg')
-// return (
-// <DatePicker
-// style={{ width: 200 }}
-// date={date}
-// mode="date"
-// placeholder="Select date"
-// format="YYYY-MM-DD"
-// minDate="2016-05-01"
-// maxDate="2020-12-12"
-// confirmBtnText="OK"
-// cancelBtnText="Cancel"
-// onDateChange={updateDate}
-// customStyles={{
-//           dateIcon: {
-//             position: 'absolute',
-//             left: 0,
-//             top: 4,
-//             marginLeft: 0
-//           },
-//           dateInput: {
-//             marginLeft: 36
-//           }
-//         }}
-// />
-// );
-//
-// }
 
     // updates location based off of gps and autofills location input
     const useCurrentLocation = () => {
@@ -162,7 +121,6 @@ const showTimePicker = () => {
       }
     }
 
-
     const getPermissionAsync = async () => {
       if (Constants.platform.ios) {
         const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -180,7 +138,6 @@ const showTimePicker = () => {
       useCurrentLocation()
     }, [])
 
-
     return (
       <KeyboardAwareScrollView
         style={{ backgroundColor: "#003366" }}
@@ -188,130 +145,140 @@ const showTimePicker = () => {
         contentContainerStyle={styles.container}
         scrollEnabled={true}
       >
-      <ScrollView>
-        <Text style={styles.title}>File a New Report</Text>
-        <Text style={styles.label}>Involved Parties:</Text>
-        <TextInput
-          placeholder="Enter Involved Parties"
-          value={parties}
-          onChangeText={updateParties}
-          style={styles.input}
-        />
-
-        <Text style={styles.label}>Date:</Text>
-          <DatePicker
-          style={styles.inputDate}
-          date={date}
-          mode="date"
-          placeholder="Select date"
-          format="YYYY-MM-DD"
-          minDate="2016-05-01"
-          maxDate={new Date}
-          confirmBtnText="OK"
-          cancelBtnText="Cancel"
-          onDateChange={updateDate}
-          customStyles={{
-                    dateIcon: {
-                      position: 'absolute',
-                      left: 0,
-                      top: 4,
-                      marginLeft: 0
-                    },
-                    dateInput: {
-                      marginLeft: 36
-                    }
-                  }}
+        <ScrollView>
+          <Text style={styles.title}>File a New Report</Text>
+          <Text style={styles.label}>Involved Parties:</Text>
+          <TextInput
+            placeholder="Enter Involved Parties"
+            value={parties}
+            onChangeText={updateParties}
+            style={styles.input}
           />
-      <View>
-      <Text style={styles.label}>Time: {time}</Text>
-     <Button title="Select Time" onPress={showTimePicker} />
-     <DateTimePickerModal
-       isVisible={isTimePickerVisible}
-       mode="time"
-       time={time}
-       locale= "en_US"
-       value="time"
-       onConfirm={handleConfirm}
-       onCancel={hideTimePicker}
-     />
-   </View>
 
+          <Text style={styles.label}>Date:</Text>
+          <DatePicker
+            style={styles.inputDate}
+            date={date}
+            mode="date"
+            placeholder="Select date"
+            format="YYYY-MM-DD"
+            minDate="2016-05-01"
+            maxDate={new Date()}
+            confirmBtnText="OK"
+            cancelBtnText="Cancel"
+            onDateChange={updateDate}
+            customStyles={{
+              dateIcon: {
+                position: "absolute",
+                left: 0,
+                top: 4,
+                marginLeft: 0,
+              },
+              dateInput: {
+                marginLeft: 36,
+              },
+            }}
+          />
+          <View>
+            <Text style={styles.label}>Time: {time}</Text>
+            <View style={styles.button}>
+              <Button
+                title="Select Time"
+                onPress={showTimePicker}
+                color={Platform.OS === "ios" ? "#fff" : null}
+              />
+            </View>
+            <DateTimePickerModal
+              isVisible={isTimePickerVisible}
+              mode="time"
+              time={time}
+              locale="en_US"
+              value="time"
+              onConfirm={handleConfirm}
+              onCancel={hideTimePicker}
+            />
+          </View>
+          <Text style={styles.label}>Street:</Text>
+          <TextInput
+            placeholder="Enter Street"
+            value={street}
+            onChangeText={updateStreet}
+            style={styles.input}
+          />
 
+          <Text style={styles.label}>City:</Text>
+          <TextInput
+            placeholder="Enter City"
+            value={city}
+            onChangeText={updateCity}
+            style={styles.input}
+          />
 
+          <Text style={styles.label}>State:</Text>
+          <TextInput
+            placeholder="Enter State"
+            value={state}
+            onChangeText={updateState}
+            style={styles.input}
+          />
 
-        {/* <Text style={styles.label}>Location:</Text>
-        <TextInput
-          placeholder="Enter Location"
-          value={location}
-          onChangeText={updateLocation}
-          style={styles.input}
-        /> */}
+          <Text style={styles.label}>Zip Code:</Text>
+          <TextInput
+            placeholder="Enter Zip Code"
+            value={zip}
+            onChangeText={updateZip}
+            style={styles.input}
+          />
+          <View style={styles.button}>
+            <Button
+              title="Use My Location"
+              onPress={() => useCurrentLocation()}
+              color={Platform.OS === "ios" ? "#fff" : null}
+            />
+          </View>
+          <Text style={styles.label}>Officer Name:</Text>
+          <TextInput
+            placeholder="Enter Officer Name(s)"
+            valuie={officerName}
+            onChangeText={updateOfficerName}
+            style={styles.input}
+          />
+          <Text style={styles.label}>Officer Badge Number:</Text>
+          <TextInput
+            placeholder="Enter Officer Badge Number(s)"
+            value={badgeNum}
+            onChangeText={updateBadgeNum}
+            style={styles.input}
+          />
 
-        <Text style={styles.label}>Street:</Text>
-        <TextInput
-          placeholder="Enter Street"
-          value={street}
-          onChangeText={updateStreet}
-          style={styles.input}
-        />
+          <Text style={styles.label}>Please Provide a Detailed Summary:</Text>
+          <TextInput
+            placeholder="Enter A Description Of What Happened"
+            value={description}
+            onChangeText={updateDescription}
+            style={styles.largeInput}
+            multiline={true}
+          />
 
-        <Text style={styles.label}>City:</Text>
-        <TextInput
-          placeholder="Enter City"
-          value={city}
-          onChangeText={updateCity}
-          style={styles.input}
-        />
+          <View>
+            <View style={styles.button}>
+              <Button
+                title="Add an Image"
+                onPress={pickImage}
+                color={Platform.OS === "ios" ? "#fff" : null}
+                />
+            </View>
+            <View>
+              {image !== "" && (
+                <Image
+                  source={{ uri: image }}
+                  style={{ width: 150, height: 150 }}
+                />
+              )}
+            </View>
+          </View>
 
-        <Text style={styles.label}>State:</Text>
-        <TextInput
-          placeholder="Enter State"
-          value={state}
-          onChangeText={updateState}
-          style={styles.input}
-        />
-
-       <Text style={styles.label}>Zip Code:</Text>
-        <TextInput
-          placeholder="Enter Zip Code"
-          value={zip}
-          onChangeText={updateZip}
-          style={styles.input}
-        />
-
-
-        <Button title="Use My Location" onPress={() => useCurrentLocation()} />
-        <Text style={styles.label}>Officer Name:</Text>
-        <TextInput
-          placeholder="Enter Officer Name(s)"
-          valuie={officerName}
-          onChangeText={updateOfficerName}
-          style={styles.input}
-        />
-        <Text style={styles.label}>Officer Badge Number:</Text>
-        <TextInput
-          placeholder="Enter Officer Badge Number(s)"
-          value={badgeNum}
-          onChangeText={updateBadgeNum}
-          style={styles.input}
-        />
-
-        <Text style={styles.label}>Please Provide a Detailed Summary:</Text>
-        <TextInput
-          placeholder="Enter A Description Of What Happened"
-          value={description}
-          onChangeText={updateDescription}
-          style={styles.largeInput}
-          multiline={true}
-        />
-
-        <View>
-        <Button title="Add an Image" onPress={pickImage} />
-        {/* <Image source={{image}} /> */}
-        {image !== '' && <Image source={{uri: image}} style={{ width: 150, height: 150 }} />}
-        </View>
-
-          <View style={styles.submitButton}>
+          <View style={styles.button}>
             <Button
               color={Platform.OS === "ios" ? "#fff" : null}
               title="Submit Report"
@@ -380,8 +347,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
 
-  submitButton: {
-    // marginTop: 5,
+  button: {
     width: "90%",
     paddingLeft: 5,
     margin: 10,
