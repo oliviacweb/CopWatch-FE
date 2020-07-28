@@ -6,12 +6,15 @@ import Footer from '../Footer/Footer'
 import ReportForm from '../ReportForm/ReportForm'
 import { NavigationContainer } from '@react-navigation/native';
 import { apiKey } from './apiKey.js'
+import * as Location from "expo-location";
+import * as Permissions from "expo-permissions";
 
 
 
 export default function Home({ navigation }) {
     const [ address, updateAddress ] = useState({street: '', city: '', state: '', zip: '', formattedAddress: ''})
-    const [ coordinates, updateCoordinates ] = useState(' ')
+    const [ coordinates, updateCoordinates ] = useState('')
+
 
     // routing
     const handleReportView = () => {
@@ -34,11 +37,19 @@ export default function Home({ navigation }) {
         );
       };
 
+
     //   find address
     const getAddress = async () => {
         const locationArray = coordinates.split(':')
-        const long = locationArray[6].split('').splice(0, 8).join('')
-        const lat = locationArray[8].split('').splice(0, 8).join('')
+
+        const long =
+          Platform.OS === "ios"
+            ? locationArray[6].split("").splice(0, 14).join("")
+            : locationArray[6].split("").splice(0, 8).join("");
+        const lat =
+          Platform.OS === "ios"
+            ? locationArray[4].split("").splice(0, 12).join("")
+            : locationArray[8].split("").splice(0, 8).join("");
         const latLong = `${lat},${long}`
         const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latLong}&key=${apiKey}`
         // move to api calls?
@@ -54,6 +65,8 @@ export default function Home({ navigation }) {
         findCoordinates()
     }, [])
 
+
+
     useEffect(() => {
         if (coordinates !== ' ') {
             getAddress()
@@ -63,10 +76,11 @@ export default function Home({ navigation }) {
     return (
         <View style={styles.home}>
             <Header />
+              <Text style={styles.missionStatement}>CopWatch is dedicated to providing civilians with a fast and easy way to document incidents of police misconduct. Simply click the 'Log An Incident' button below to get started. </Text>
             <View style={styles.reportBtn}>
-                <Button 
+                <Button
                     color= {Platform.OS === 'ios' ? '#fff' : null}
-                    title="File a Report"
+                    title="Log An Incident"
                     onPress={() => handleReportView()}
                 />
             </View>
@@ -89,7 +103,16 @@ const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
     },
+    missionStatement: {
+      marginBottom: 170,
+      fontSize: 17,
+      // fontStyle: 'bold',
+      marginLeft: '10%',
+      marginRight: '6%',
+      justifyContent: 'center',
+      color: 'white'
 
+    },
     home: {
         height: '100%',
         backgroundColor: '#003366',
