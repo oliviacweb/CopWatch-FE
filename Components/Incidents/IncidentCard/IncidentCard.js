@@ -11,7 +11,7 @@ export default function IncidentCard(props) {
             incident
         })
     }
-
+    
 
     return (
       <View style={styles.card}>
