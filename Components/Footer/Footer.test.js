@@ -12,7 +12,10 @@ describe('Footer', () => {
 
         const logIncident = await waitFor(() => getByText("Log An Incident"))
         const viewIncidents = await waitFor(() => getByText("View Incidents"))
+        const twitter = await waitFor(() => getByText("Twitter"))
 
         expect(logIncident).toBeTruthy()
+        expect(viewIncidents).toBeTruthy()
+        expect(twitter).toBeTruthy()
     })
 })
