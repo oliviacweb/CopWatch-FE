@@ -96,11 +96,6 @@ const showTimePicker = () => {
      updateTime(civTime)
   };
 
-
-
-
-
-
     //date
 // const renderPicker = () => {
 //   console.log('isthis runnningggg')
@@ -171,22 +166,13 @@ const showTimePicker = () => {
       }
     }
 
-    const getLocationAsync = async () => {
-      let { status } = await Permissions.askAsync(Permissions.LOCATION);
-      if (status !== 'granted') {
-              alert('Permission to access location was denied');
-      }
-      let location = await Location.getCurrentPositionAsync({accuracy:Location.Accuracy.Highest});
-      console.log(location)
-      const { latitude, longitude } = location.coords
-      this.getGeocodeAsync({latitude, longitude})
-
-}
-
     useEffect(() => {
       getPermissionAsync()
-      getLocationAsync()
     , []})
+
+    useEffect(() => {
+      useCurrentLocation()
+    }, [])
 
 
     return (
@@ -285,8 +271,6 @@ const showTimePicker = () => {
           onChangeText={updateZip}
           style={styles.input}
         />
-
-
 
 
         <Button title="Use My Location" onPress={() => useCurrentLocation()} />
