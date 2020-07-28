@@ -25,6 +25,7 @@ export default function IncidentsContainer({ navigation }) {
 
     // maps over all incidents and creatre Incident Cards
     const allIncidentCards = () => {
+        // console.log(incidents)
         if (incidentsToDisplay !== undefined && incidents) {
             return incidentsToDisplay.map(incident => <IncidentCard incident={incident} key={incident.id} navigation={navigation}/>)
         }
@@ -66,6 +67,7 @@ export default function IncidentsContainer({ navigation }) {
     const clearInput = () => {
         updateSearchInput('')
     }
+
     
     return (
         <View style={styles.container}>

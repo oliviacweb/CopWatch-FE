@@ -3,7 +3,7 @@ import { View, TextInput, Text, StyleSheet, Button, Platform, ScrollView, Image,
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { NavigationContainer } from "@react-navigation/native";
 
-import { postIncident } from '../../apiCalls'
+import { postIncident, sendImage } from '../../apiCalls'
 import DatePicker from 'react-native-datepicker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
@@ -30,6 +30,7 @@ export default function Report(props) {
     const [ badgeNum, updateBadgeNum ] = useState('')
     const [ description, updateDescription ] = useState('')
     const [ image, updateImage ] = useState('')
+    const [ imageUrl, updateImageUrl ] = useState('')
 
     // calls fn to create our report object and then posts the incident
     const handleSubmit = () => {
@@ -55,7 +56,7 @@ export default function Report(props) {
             officerName,
             badgeNum,
             description,
-            image
+            image: imageUrl
         })
     }
 
@@ -152,13 +153,26 @@ const showTimePicker = () => {
           quality: 1,
         });
          if (!result.cancelled) {
+          //  console.log(result.uri)
           updateImage(result.uri);
-          // updateImage(result.uri);
         }
         } catch (error) {
         console.log(error);
       }
     }
+
+// envokes api call to cloudinary when image is updated
+    useEffect(() => {
+      console.log(typeof image)
+      async function uploadImage() {
+        if (image) {
+          const result = await sendImage(image)
+          console.log(result)
+          updateImageUrl(result.url)
+        }
+      }
+      uploadImage()
+     }, [image])
 
 
     const getPermissionAsync = async () => {

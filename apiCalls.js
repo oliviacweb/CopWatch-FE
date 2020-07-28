@@ -16,7 +16,6 @@ export const fetchIncidents = async () => {
 }
 
 export const postIncident = async (report) => {
-    console.log(report.image)
     const url = 'https://copwatch-be.herokuapp.com/api/v1/reports/new'
     fetch(url, {
         method: 'POST',
@@ -32,33 +31,32 @@ export const postIncident = async (report) => {
                 parties: report.parties,
                 officer_name: report.officerName,
                 badge_number: report.badgeNum,
-                created_date: report.date,
+                created_date: `${report.date}, ${report.time}`,
                 image: report.image
             }
         )
       })
         .then(response => response.json())
+        // .then(data => console.log(data))
         .catch(err => console.error(err))
 }
 
-const postImage = (report) => {
-    console.log(report.image)
-    // const corsAnywhere = `https://cors-anywhere.herokuapp.com/`;
-    // const url = 'https://copwatch-be.herokuapp.com/api/v1/upload'
-    const url = `http://localhost:5000/api/v1/upload`
-    fetch(url, {
+export const sendImage = async (image) => {
+    
+    const url = 'https://copwatch-be.herokuapp.com/api/v1/upload'
+    return await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(
             {
-                image: report.image
+                image: image
             }
         )
       })
-        // .then(response => response.json())
-        .then(response => console.log(response))
+        .then(response => response.json())
+        // .then(data => console.log(data))
         .catch(err => console.error(err))
 }
 

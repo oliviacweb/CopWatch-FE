@@ -12,14 +12,14 @@ export default function IncidentCard(props) {
         })
     }
     
-    console.log(incident)
+   
     return (
-        <View style={styles.card}> 
+      <View style={styles.card}> 
+            
         {/* <ImageBackground source={incident.image} > */}
             <Text style={styles.details}>Date: {incident.created_date}</Text>
             <Text style={styles.details}>City: {incident.city}, {incident.state} {incident.zip_code}</Text>
             <Text style={styles.description}>Description: {incident.description}</Text>
-            <Image source={incident.image} />
             <Button 
               title='Incident Details'
               onPress={handleDetailsView}
