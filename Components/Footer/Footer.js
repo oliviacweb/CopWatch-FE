@@ -39,7 +39,7 @@ export default function Footer({ navigation, address }) {
         <TouchableHighlight onPress={() => handleFileReportView()}>
           <View style={styles.button}>
             {addReportIcon}
-            <Text style={styles.iconTitle}>File A Report</Text>
+            <Text style={styles.iconTitle}>Log An Incident</Text>
           </View>
         </TouchableHighlight>
         <TouchableHighlight onPress={() => handleIncidentsView()}>
