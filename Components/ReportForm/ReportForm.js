@@ -9,6 +9,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 // import ImagePicker from 'expo-image-picker'
+import * as Location from 'expo-location'
 import * as Permissions from 'expo-permissions';
 import Constants from 'expo-constants';
 
@@ -69,13 +70,9 @@ const showTimePicker = () => {
    setTimePickVis(false);
  };
 
-
-
  const handleConfirm = (time) => {
    hideTimePicker();
    setTime(time)
-
-
  };
 
  const setTime = (time) => {
@@ -90,6 +87,7 @@ const showTimePicker = () => {
    console.log('the time put in')
  }
 
+
   const convertTime = (time) => {
     time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
      if (time.length > 1) {
@@ -99,12 +97,7 @@ const showTimePicker = () => {
      }
      let civTime = time.join('');
      updateTime(civTime)
-  }
-
-
-
-
-
+  };
 
 
 
@@ -183,6 +176,10 @@ const showTimePicker = () => {
       getPermissionAsync()
     , []})
 
+    useEffect(() => {
+      useCurrentLocation()
+    }, [])
+
 
     return (
       <KeyboardAwareScrollView
@@ -203,7 +200,7 @@ const showTimePicker = () => {
 
         <Text style={styles.label}>Date:</Text>
           <DatePicker
-          style={styles.input}
+          style={styles.inputDate}
           date={date}
           mode="date"
           placeholder="Select date"
@@ -283,8 +280,6 @@ const showTimePicker = () => {
         />
 
 
-
-
         <Button title="Use My Location" onPress={() => useCurrentLocation()} />
         <Text style={styles.label}>Officer Name:</Text>
         <TextInput
@@ -348,6 +343,15 @@ const styles = StyleSheet.create({
     margin: 10,
     fontSize: 15,
     height: 33,
+    backgroundColor: "#fff",
+    paddingLeft: 5,
+    width: "90%",
+  },
+
+  inputDate: {
+    margin: 10,
+    fontSize: 15,
+    height: 40,
     backgroundColor: "#fff",
     paddingLeft: 5,
     width: "90%",
