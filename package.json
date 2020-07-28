@@ -9,7 +9,11 @@
     "test": "jest"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "/node_modules/(?!expo-image-picker)/",
+      "/node_modules/(?!/@expo/vector-icons/src/FontAwesome)/"
+    ]
   },
   "dependencies": {
     "@react-native-community/datetimepicker": "2.4.0",
