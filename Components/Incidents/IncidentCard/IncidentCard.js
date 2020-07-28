@@ -5,22 +5,22 @@ import { View, Text, StyleSheet, Button, Image } from 'react-native'
 
 export default function IncidentCard(props) {
   const { incident } = props
-  
+
       const handleDetailsView = () => {
         props.navigation.navigate("Incident Details", {
             incident
         })
     }
-    
-   
+
+
     return (
-      <View style={styles.card}> 
-            
+      <View style={styles.card}>
+
         {/* <ImageBackground source={incident.image} > */}
             <Text style={styles.details}>Date: {incident.created_date}</Text>
-            <Text style={styles.details}>City: {incident.city}, {incident.state} {incident.zip_code}</Text>
+            <Text style={styles.details}>Location: {incident.city}, {incident.state} {incident.zip_code}</Text>
             <Text style={styles.description}>Description: {incident.description}</Text>
-            <Button 
+            <Button
               title='Incident Details'
               onPress={handleDetailsView}
             />
@@ -49,5 +49,5 @@ const styles = StyleSheet.create({
       fontStyle: 'italic',
       fontSize: 18,
     }
- 
+
 })
