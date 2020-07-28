@@ -11,6 +11,7 @@ describe('Footer', () => {
         const { getByText } = render(<Footer />)
 
         const logIncident = await waitFor(() => getByText("Log An Incident"))
+        const viewIncidents = await waitFor(() => getByText("View Incidents"))
 
         expect(logIncident).toBeTruthy()
     })
