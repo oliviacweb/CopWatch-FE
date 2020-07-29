@@ -154,8 +154,22 @@ const showTimePicker = () => {
             onChangeText={updateParties}
             style={styles.input}
           />
-
           <Text style={styles.label}>Date:</Text>
+          <TextInput
+            placeholder="Date"
+            value={date}
+            onChangeText={updateDate}
+            style={styles.input}
+          />
+          <Text style={styles.label}>Time:</Text>
+          <TextInput
+            placeholder="Enter Time"
+            value={time}
+            onChangeText={updateTime}
+            style={styles.input}
+          />
+
+          {/* <Text style={styles.label}>Date:</Text>
           <DatePicker
             style={styles.inputDate}
             date={date}
@@ -197,7 +211,7 @@ const showTimePicker = () => {
               onConfirm={handleConfirm}
               onCancel={hideTimePicker}
             />
-          </View>
+          </View> */}
           <Text style={styles.label}>Street:</Text>
           <TextInput
             placeholder="Enter Street"
