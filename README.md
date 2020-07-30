@@ -30,6 +30,6 @@ CopWatch is dedicated to providing civilians with a fast and easy way to documen
 ### Colaborators 
 - [Olivia Webster](https://github.com/oliviacweb)
 - [Karl Nielsen](https://github.com/Karlfunhouse)
-Dave Pernitz
-David Tran
-Ben Fox
+- [Dave Pernitz](https://github.com/pernstrong)
+- [David Tran](https://github.com/DavidTTran)
+- [Ben Fox](https://github.com/benfox1216)
