@@ -11,6 +11,19 @@ CopWatch is dedicated to providing civilians with a fast and easy way to documen
 * Start development server: $ npm start
 * In browser: select "Run in web browser"
 
+### Screenshots & GIFS
+## iOS
+
+Home Screen.               |  Report Form
+:-------------------------:|:-------------------------:
+![copwatch-home](https://user-images.githubusercontent.com/56427310/88960978-8e57c980-d261-11ea-9329-466ae0b4c357.gif)  |  ![copwatch-reportform](https://user-images.githubusercontent.com/56427310/88960985-9283e700-d261-11ea-8026-c975d022ecd6.gif)
+
+
+Report Form cont.          |  Incident Feed
+:-------------------------:|:-------------------------:
+![copwatch-descriptionphoto](https://user-images.githubusercontent.com/56427310/88960996-96176e00-d261-11ea-9fcb-459ad4381f68.gif)  | ![copwatch-incidentfeed](https://user-images.githubusercontent.com/56427310/88961002-97e13180-d261-11ea-9efc-7d63a047b5a0.gif)
+
+
 ### Technologies 
 * React Native 
 * React Hooks
