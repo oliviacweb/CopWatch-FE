@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, Button, Platform } from 'react-native';
+import React, { useState, useEffect, } from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, Button, Platform, Image } from 'react-native';
 
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
@@ -79,6 +79,7 @@ export default function Home({ navigation }) {
     return (
         <View style={styles.home}>
             <Header />
+              {/* <Image source={require('../../assets/watchhalf.png')} style={styles.icon}/>  */}
               <Text style={styles.missionStatement}>CopWatch is dedicated to providing civilians with a fast and easy way to document incidents of police misconduct. Simply click the 'Log An Incident' button below to get started. </Text>
             <View style={styles.reportBtn}>
                 <Button
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
         marginLeft: '6%',
         borderRadius: 30,
         height: 55,
-        backgroundColor: Platform.OS === 'ios'? '#0018f0' : null,
+        backgroundColor: Platform.OS === 'ios' ? '#0da2ff' : null,
         borderColor: Platform.OS === 'ios'? '#FFF' : null,
         borderStyle: Platform.OS === 'ios'? 'solid' : null,
         borderWidth: Platform.OS === 'ios'? 2 : null,
@@ -121,5 +122,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#003366',
         display: 'flex',
         justifyContent: 'center'
-    }
+    },
+   
 })

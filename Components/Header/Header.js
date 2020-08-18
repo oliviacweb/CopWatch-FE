@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, Text, StyleSheet } from 'react-native'
+import { ScrollView, Text, StyleSheet, Image } from 'react-native'
 
 export default function Header() {
 
@@ -7,6 +7,7 @@ export default function Header() {
         <ScrollView>
             <Text style={styles.header}>
                 <Text style={styles.cop}>Cop
+                <Image source={require('../../assets/watchhalf.png')} style={styles.icon}/>
                 </Text>
             Watch</Text>
         </ScrollView>
@@ -24,8 +25,12 @@ const styles = StyleSheet.create({
         color: '#fff'
     },
     cop: {
-        color: '#0018f9',
+        color: '#0da2ff',
         fontWeight: "bold",
 
+    },
+    icon: {
+        // height: '1%',
+        // width: '1%'
     }
 })

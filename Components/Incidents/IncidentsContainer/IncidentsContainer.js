@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderRadius: 30,
     height: 55,
-    backgroundColor: Platform.OS === "ios" ? "#0018f0" : null,
+    backgroundColor: Platform.OS === "ios" ? "#0da2ff" : null,
     borderColor: Platform.OS === "ios" ? "#FFF" : null,
     borderStyle: Platform.OS === "ios" ? "solid" : null,
     borderWidth: Platform.OS === "ios" ? 2 : null,

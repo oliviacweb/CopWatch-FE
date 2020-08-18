@@ -18,7 +18,7 @@ export default function IncidentDetails(props) {
                 <Text style={styles.text}>Officer Name(s): {incident.officer_name}</Text>
                 <Text style={styles.text}>Badge Number(s): {incident.badge_number}</Text>
                 <Text style={styles.text}>Description: {incident.description}</Text>
-            <Image source={image} style={{ width: 150, height: 150 }} />
+            <Image source={{uri: image}} style={{ width: 150, height: 150 }} />
             </View>
             <Footer navigation={navigation}/>
         </View>

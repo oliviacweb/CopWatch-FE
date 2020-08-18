@@ -11,6 +11,7 @@ import IncidentDetails from './Components/Incidents/IncidentDetails/IncidentDeta
 import SubmissionConfirmation from './Components/SubmissionConfirmation/SubmissionConfirmation'
 
 const Stack = createStackNavigator();
+console.disableYellowBox = true;
 
 
 export default function App() {
